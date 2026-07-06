@@ -1,0 +1,8 @@
+﻿Difficulty:
+Medium
+
+Topic:
+Hashing Patterns
+
+Expected Time:
+20 minutes

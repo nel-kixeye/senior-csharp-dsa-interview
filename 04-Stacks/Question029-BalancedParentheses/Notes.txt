@@ -1,0 +1,8 @@
+﻿Difficulty:
+Easy
+
+Topic:
+Stacks
+
+Expected Time:
+10 minutes

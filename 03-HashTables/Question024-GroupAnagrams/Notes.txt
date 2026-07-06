@@ -1,0 +1,8 @@
+﻿Difficulty:
+Medium
+
+Topic:
+Hash Tables
+
+Expected Time:
+20 minutes

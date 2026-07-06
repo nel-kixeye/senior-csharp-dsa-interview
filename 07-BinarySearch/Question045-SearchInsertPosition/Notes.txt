@@ -1,0 +1,8 @@
+﻿Difficulty:
+Easy
+
+Topic:
+Binary Search
+
+Expected Time:
+10 minutes

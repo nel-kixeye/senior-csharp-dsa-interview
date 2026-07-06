@@ -1,0 +1,8 @@
+﻿Difficulty:
+Easy
+
+Topic:
+Two Pointers
+
+Expected Time:
+10 minutes

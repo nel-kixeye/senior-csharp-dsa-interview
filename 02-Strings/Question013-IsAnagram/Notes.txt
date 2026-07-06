@@ -1,0 +1,8 @@
+﻿Difficulty:
+Easy
+
+Topic:
+Strings
+
+Expected Time:
+10 minutes

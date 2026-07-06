@@ -1,0 +1,8 @@
+﻿Difficulty:
+Easy
+
+Topic:
+Arrays
+
+Expected Time:
+10 minutes

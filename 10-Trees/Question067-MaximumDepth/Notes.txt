@@ -1,0 +1,8 @@
+﻿Difficulty:
+Easy
+
+Topic:
+Trees
+
+Expected Time:
+10 minutes

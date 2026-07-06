@@ -1,0 +1,8 @@
+﻿Difficulty:
+Medium
+
+Topic:
+Mixed
+
+Expected Time:
+25 minutes

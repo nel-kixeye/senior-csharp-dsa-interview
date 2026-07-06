@@ -1,0 +1,8 @@
+﻿Difficulty:
+Medium
+
+Topic:
+Arrays
+
+Expected Time:
+15 minutes

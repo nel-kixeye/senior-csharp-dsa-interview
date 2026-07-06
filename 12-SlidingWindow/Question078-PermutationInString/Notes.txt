@@ -1,0 +1,8 @@
+﻿Difficulty:
+Medium
+
+Topic:
+Sliding Window
+
+Expected Time:
+20 minutes

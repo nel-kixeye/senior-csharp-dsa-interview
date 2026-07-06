@@ -1,0 +1,8 @@
+﻿Difficulty:
+Easy
+
+Topic:
+Linked Lists
+
+Expected Time:
+15 minutes

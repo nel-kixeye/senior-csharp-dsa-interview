@@ -1,0 +1,8 @@
+﻿Difficulty:
+Easy
+
+Topic:
+Mixed
+
+Expected Time:
+5 minutes
