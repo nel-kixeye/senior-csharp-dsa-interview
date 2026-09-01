@@ -1,0 +1,14 @@
+Exercise:
+E10.2
+
+Difficulty:
+Medium
+
+Topic:
+Sliding window + Dictionary
+
+Expected Time:
+25 minutes
+
+Attempts:
+(record attempt 1, 2, 3 here — what you tried and what was wrong)

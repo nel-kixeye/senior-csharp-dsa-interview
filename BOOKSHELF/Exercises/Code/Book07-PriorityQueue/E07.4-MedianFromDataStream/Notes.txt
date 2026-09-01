@@ -1,0 +1,14 @@
+Exercise:
+E07.4
+
+Difficulty:
+Hard
+
+Topic:
+PriorityQueue / two heaps
+
+Expected Time:
+30 minutes
+
+Attempts:
+(record attempt 1, 2, 3 here — what you tried and what was wrong)

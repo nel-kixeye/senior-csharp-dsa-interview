@@ -1,0 +1,14 @@
+Exercise:
+E12.4
+
+Difficulty:
+Medium
+
+Topic:
+Binary search on the answer
+
+Expected Time:
+30 minutes
+
+Attempts:
+(record attempt 1, 2, 3 here — what you tried and what was wrong)
