@@ -1,0 +1,14 @@
+Exercise:
+E19.2
+
+Difficulty:
+Medium
+
+Topic:
+DP
+
+Expected Time:
+20 minutes
+
+Attempts:
+(record attempt 1, 2, 3 here — what you tried and what was wrong)

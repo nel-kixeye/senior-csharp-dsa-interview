@@ -1,0 +1,14 @@
+Exercise:
+E20.4
+
+Difficulty:
+Medium
+
+Topic:
+Greedy + sorting
+
+Expected Time:
+25 minutes
+
+Attempts:
+(record attempt 1, 2, 3 here — what you tried and what was wrong)
