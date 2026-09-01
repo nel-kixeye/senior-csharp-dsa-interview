@@ -1,0 +1,14 @@
+Exercise:
+E27.3
+
+Difficulty:
+Medium
+
+Topic:
+LINQ / deferred execution
+
+Expected Time:
+20 minutes
+
+Attempts:
+(record attempt 1, 2, 3 here — what you tried and what was wrong)

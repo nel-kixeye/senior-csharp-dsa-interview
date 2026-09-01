@@ -1,0 +1,14 @@
+Exercise:
+E25.3
+
+Difficulty:
+Easy
+
+Topic:
+Bits + DP
+
+Expected Time:
+20 minutes
+
+Attempts:
+(record attempt 1, 2, 3 here — what you tried and what was wrong)
