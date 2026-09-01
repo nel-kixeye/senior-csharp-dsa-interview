@@ -1,0 +1,14 @@
+Exercise:
+E04.4
+
+Difficulty:
+Medium
+
+Topic:
+Stack / nesting
+
+Expected Time:
+25 minutes
+
+Attempts:
+(record attempt 1, 2, 3 here — what you tried and what was wrong)

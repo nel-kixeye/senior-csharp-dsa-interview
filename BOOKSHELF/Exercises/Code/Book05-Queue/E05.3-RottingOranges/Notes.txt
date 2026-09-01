@@ -1,0 +1,14 @@
+Exercise:
+E05.3
+
+Difficulty:
+Medium
+
+Topic:
+Queue / multi-source BFS
+
+Expected Time:
+25 minutes
+
+Attempts:
+(record attempt 1, 2, 3 here — what you tried and what was wrong)
