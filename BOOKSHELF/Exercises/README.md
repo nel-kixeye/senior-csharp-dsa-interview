@@ -55,9 +55,45 @@ take a rung.
 
 ## Where to write the code
 
-Many exercises correspond to a question already stubbed in `DSA/`. Where they do,
-the exercise says so — use that stub and its `Tests.cs`. The rest are new; a
-scratch console project is fine.
+**In `Code/`.** Every exercise has a scaffolded folder following the exact same
+convention as `DSA/`:
+
+```
+Code/Book01-HashSet/E01.1-ContainsDuplicate/
+├── README.txt     the problem, constraints, target complexity, edge cases
+├── Notes.txt      difficulty, topic, expected time, and an ATTEMPTS section
+├── Solution.cs    the stub you fill in — throws NotImplementedException
+├── Program.cs     a runnable harness with expected outputs in comments
+└── Tests.cs       the test cases, including the ones designed to break you
+```
+
+`README.txt` is generated from the guide markdown, so the two cannot drift. It
+deliberately **omits** the "Before you code" prompt — that stays in the guide, so
+the exam paper does not hand you the insight.
+
+`Program.cs` catches `NotImplementedException`, so an unstarted exercise still
+runs and prints "Solution not yet implemented." Fill in `Solution.cs` and the
+expected outputs appear.
+
+**Use `Notes.txt` for the three-attempt rule.** It has an Attempts section —
+record what you tried and what was wrong, the same way `DSA/` does it. That
+record is worth more later than the working solution.
+
+### Running an exercise
+
+The repo has no `.csproj` (same as `DSA/`), because each exercise defines its own
+`Solution` class and they would collide in one project. Run one at a time:
+copy the folder's `.cs` files into a scratch console app, or point LINQPad at
+them, or `dotnet new console` in a temp directory and drop them in.
+
+### Books 27–33 are shaped differently
+
+Those are rewrite and code-review exercises, so the **broken code ships in
+`Solution.cs`** alongside your fix. Several `Program.cs` files are built to
+*demonstrate the bug* — E27.2 times the quadratic LINQ against your fix, E28.2
+reproduces the Turkish-I locale bug, E29.2 shows `RemoveAt` silently skipping
+elements, E30.5 counts how much formatting work happens when logging is
+disabled. Run them before you fix anything; seeing the failure is the lesson.
 
 ## Suggested order
 
