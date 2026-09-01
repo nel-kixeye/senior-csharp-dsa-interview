@@ -55,6 +55,9 @@ not a textbook.
    - What is the naive approach, and what does it cost?
    - Which concrete C# type/API?
 4. **Only then** open `Drills/ANSWERS.md`.
+5. **Then go build fluency.** `Exercises/Book<NN>.md` has five interview-style
+   problems per book. Recognition tells you which tool; the exercises make you
+   fast with it.
 
 ### Answers live in a separate file on purpose
 
@@ -90,19 +93,45 @@ BOOKSHELF/
 ├── README.md          ← you are here
 ├── INDEX.md           ← signal → book flashcard table (the money page)
 ├── Books/             ← 33 books, Book01..Book33
-└── Drills/
-    ├── BeforeYouLoop.md
-    ├── Level1-Obvious.md          (12)
-    ├── Level2-Mixed.md            (12)
-    ├── Level3-Deceptive.md        (12)
-    ├── Level4-Combined.md         (10)
-    ├── Level5-InterviewSim.md      (8)
-    └── ANSWERS.md                 ← open last, always
+├── Drills/            ← recognition: "WHICH book?"
+│   ├── BeforeYouLoop.md
+│   ├── Level1-Obvious.md          (12)
+│   ├── Level2-Mixed.md            (12)
+│   ├── Level3-Deceptive.md        (12)
+│   ├── Level4-Combined.md         (10)
+│   ├── Level5-InterviewSim.md      (8)
+│   └── ANSWERS.md                 ← open last, always
+└── Exercises/         ← execution: "USE this book"
+    ├── README.md
+    ├── PROGRESS.md                ← checklist of all 165
+    └── Book01..Book33.md          (5 each)
 ```
 
 54 drills total. They are deliberately **not** grouped by book — mixing is the
 entire point. A drill you can solve because you know which chapter you're in is
 a drill that taught you nothing.
+
+## Drills vs. Exercises — you need both
+
+| | Drills | Exercises |
+|---|---|---|
+| Question | "**Which** book?" | "**Use** this book." |
+| The book is | hidden — that is the test | given, in the filename |
+| Trains | recognition | execution |
+| Output | a spoken answer | working C# |
+| Mixed? | yes, deliberately | no, grouped by book |
+
+Recognition without fluency means you name the right pattern and then fumble it
+under pressure. Fluency without recognition means you write a beautiful sliding
+window for a problem that needed a heap.
+
+**Run them together.** Do a book's five exercises, then go do a Drills level —
+the drills are where you find out whether the pattern actually stuck.
+
+Exercises carry a progressive **hint ladder** (nudge → structure → skeleton)
+behind a divider at the bottom of each file. There are no full solutions
+anywhere, by design: the skeleton unsticks you without doing the part that
+builds the muscle. Take one rung at a time, and only after genuinely trying.
 
 ## Complexity notation used throughout
 
