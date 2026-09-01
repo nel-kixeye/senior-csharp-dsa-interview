@@ -1,0 +1,14 @@
+Exercise:
+E16.4
+
+Difficulty:
+Medium
+
+Topic:
+Graph / reverse traversal
+
+Expected Time:
+35 minutes
+
+Attempts:
+(record attempt 1, 2, 3 here — what you tried and what was wrong)

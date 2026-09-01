@@ -1,0 +1,14 @@
+Exercise:
+E18.5
+
+Difficulty:
+Hard
+
+Topic:
+DFS + memoization
+
+Expected Time:
+35 minutes
+
+Attempts:
+(record attempt 1, 2, 3 here — what you tried and what was wrong)
