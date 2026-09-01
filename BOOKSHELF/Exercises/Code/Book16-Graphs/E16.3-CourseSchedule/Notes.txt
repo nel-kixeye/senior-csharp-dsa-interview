@@ -1,0 +1,14 @@
+Exercise:
+E16.3
+
+Difficulty:
+Medium
+
+Topic:
+Graph / topological sort
+
+Expected Time:
+30 minutes
+
+Attempts:
+(record attempt 1, 2, 3 here — what you tried and what was wrong)
