@@ -11,4 +11,13 @@ Expected Time:
 10 minutes
 
 Attempts:
-(record attempt 1, 2, 3 here — what you tried and what was wrong)
+Attempt 1 - CORRECT, first try, no hints taken.
+  HashSet + the !Add(x) idiom (one hash lookup, not Contains-then-Add).
+  Early return on the first duplicate rather than counting Distinct at the end.
+  Verified 8/8: empty, single, all-identical, negatives, dup-at-end, int extremes.
+  O(n) time, O(n) space - target met.
+
+  Nit: name it `seen`, not `seenChecker` - the !Add already says "checker".
+  Follow-up worth remembering: new HashSet<int>(nums.Length) pre-sizes it and
+  avoids rehashing as it grows. Irrelevant for the interview answer; useful if
+  asked about a hot path.
