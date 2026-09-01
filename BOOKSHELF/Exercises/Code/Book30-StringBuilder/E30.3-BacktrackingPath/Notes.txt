@@ -1,0 +1,14 @@
+Exercise:
+E30.3
+
+Difficulty:
+Medium
+
+Topic:
+StringBuilder + backtracking
+
+Expected Time:
+25 minutes
+
+Attempts:
+(record attempt 1, 2, 3 here — what you tried and what was wrong)
