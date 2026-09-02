@@ -4,6 +4,9 @@ public static class Solution
     // Result must contain no duplicates. Order does not matter.
     public static int[] Intersection(int[] a, int[] b)
     {
-        throw new NotImplementedException();
+        var setA = a.ToHashSet<int>();
+
+        setA.IntersectWith(b);
+        return [.. setA];
     }
 }

@@ -11,4 +11,23 @@ Expected Time:
 15 minutes
 
 Attempts:
-(record attempt 1, 2, 3 here — what you tried and what was wrong)
+Attempt 1 - WRONG (compile error CS0029: cannot convert 'void' to 'int[]').
+  Assumed IntersectWith RETURNED a new set. It does not - it MUTATES the
+  receiver and returns void. Lesson: check the return type of set operations.
+
+Attempt 2 - WRONG (compile error CS0030: cannot convert HashSet<int> to int[]).
+  Tried to CAST the set to an array: (int[])setA.
+  Lesson: cast vs convert. A cast reinterprets something that already IS a T.
+  HashSet<int> and int[] are unrelated - you need a CONVERSION that builds a
+  new object (ToArray, or the [.. set] collection expression).
+
+Attempt 3 - CORRECT. Two sets, [.. setA] to convert. 9/9 pass.
+
+Refinement - one set instead of two.
+  IntersectWith takes an IEnumerable<int>, so it consumes `b` directly.
+  The second HashSet was pure overhead. Still 9/9.
+
+Remaining polish (not done, understood):
+  Building the set from `a` is O(n), not O(min(n, m)). To hit the stated
+  target, build the set from whichever array is SMALLER and intersect
+  against the other. Worth saying out loud in an interview.

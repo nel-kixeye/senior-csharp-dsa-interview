@@ -14,7 +14,7 @@ Each line links to its scaffolded folder. The guide (statement + hints) is
 Guide: [Book01-HashSet.md](Book01-HashSet.md)
 
 - [x] [E01.1 — Contains Duplicate](Code/Book01-HashSet/E01.1-ContainsDuplicate/)
-- [ ] [E01.2 — Intersection of Two Arrays](Code/Book01-HashSet/E01.2-IntersectionOfTwoArrays/)
+- [~] [E01.2 — Intersection of Two Arrays](Code/Book01-HashSet/E01.2-IntersectionOfTwoArrays/)
 - [ ] [E01.3 — Happy Number](Code/Book01-HashSet/E01.3-HappyNumber/)
 - [ ] [E01.4 — Longest Consecutive Sequence](Code/Book01-HashSet/E01.4-LongestConsecutiveSequence/)
 - [ ] [E01.5 — Valid Sudoku](Code/Book01-HashSet/E01.5-ValidSudoku/)
