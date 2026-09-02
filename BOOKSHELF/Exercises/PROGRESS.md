@@ -27,7 +27,7 @@ Guide: [Book02-Dictionary.md](Book02-Dictionary.md)
 - [~] [E02.2 — First Unique Character](Code/Book02-Dictionary/E02.2-FirstUniqueCharacter/)
 - [ ] [E02.3 — Group Anagrams](Code/Book02-Dictionary/E02.3-GroupAnagrams/)
 - [ ] [E02.4 — Top K Frequent Elements](Code/Book02-Dictionary/E02.4-TopKFrequentElements/)
-- [ ] [E02.5 — Isomorphic Strings](Code/Book02-Dictionary/E02.5-IsomorphicStrings/)
+- [~] [E02.5 — Isomorphic Strings](Code/Book02-Dictionary/E02.5-IsomorphicStrings/)
 
 ## Book 03: Array / List
 
