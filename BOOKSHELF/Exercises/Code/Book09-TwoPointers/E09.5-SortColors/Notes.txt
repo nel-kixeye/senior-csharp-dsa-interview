@@ -5,10 +5,53 @@ Difficulty:
 Medium
 
 Topic:
-Dutch national flag
+Dutch national flag / three-pointer partition
 
 Expected Time:
 25 minutes
 
 Attempts:
-(record attempt 1, 2, 3 here — what you tried and what was wrong)
+Attempt 1 (abandoned) - reached for the CONVERGING shape from E09.1/E09.2:
+  left=0, right=0, swap if nums[left] < nums[right].
+  Wrong on three counts:
+    - left and right both 0, so the loop never ran
+    - [a,b] = [b,a] is a collection expression, not deconstruction; the
+      swap idiom is (a, b) = (b, a)
+    - CONCEPTUALLY WRONG SHAPE. The condition compared two ELEMENTS. With
+      only three possible values you do not compare elements, you BRANCH ON
+      THE VALUE. That is a partition, not a search.
+
+Attempt 2 - CORRECT. 11 edge cases + 2000 randomized arrays. One pass,
+  O(1) space. Got the critical no-mid++ case unaided.
+
+THE INVARIANT (why it is correct)
+  [0 .. low)      all 0s        settled
+  [low .. mid)    all 1s        settled
+  [mid .. high]   UNEXAMINED    the working region
+  (high .. end]   all 2s        settled
+
+  value 0 -> swap with low. What comes back is a 1 (from the 1s region) or
+            the same 0 (when low == mid). Either way ALREADY CLASSIFIED, so
+            advancing mid is safe.
+  value 1 -> already in the right region. Advance.
+  value 2 -> swap with high. What comes back is from the UNEXAMINED region -
+            unknown. Advancing mid would skip an unclassified element, so
+            mid STAYS and re-examines.
+
+  The question that unlocks it: WHAT DO I KNOW ABOUT THE VALUE THAT JUST
+  ARRIVED AT MY SCANNER?
+
+TWO POINTERS IS THREE DIFFERENT TECHNIQUES (Book 09 section 5)
+  (a) CONVERGING   - lo/hi move toward each other.  E09.1, E09.2, E09.3, E09.4
+  (b) READ/WRITE   - scanner + boundary, rearranging in place.  E03.1, E09.5
+  (c) TWO SEQUENCES- walk two arrays together.  merge, subsequence
+
+  E09.5 is (b) with THREE regions instead of two. The elimination argument
+  from E09.2 does NOT apply here - that was about discarding candidates in
+  sorted data. This is about maintaining a PARTITION INVARIANT. Different
+  justification entirely.
+
+NOTE
+  The if/else-if/else partition (rather than if + continue) is the right
+  structure here: three mutually exclusive values. else makes exhaustiveness
+  structural instead of incidental - see the E01.2 equal-length bug.

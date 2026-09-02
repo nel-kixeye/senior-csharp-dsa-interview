@@ -97,7 +97,7 @@ Guide: [Book09-TwoPointers.md](Book09-TwoPointers.md)
 - [~] [E09.2 — Two Sum II (Input Sorted)](Code/Book09-TwoPointers/E09.2-TwoSumII/)
 - [ ] [E09.3 — 3Sum](Code/Book09-TwoPointers/E09.3-ThreeSum/)
 - [ ] [E09.4 — Container With Most Water](Code/Book09-TwoPointers/E09.4-ContainerWithMostWater/)
-- [ ] [E09.5 — Sort Colors (Dutch National Flag)](Code/Book09-TwoPointers/E09.5-SortColors/)
+- [~] [E09.5 — Sort Colors (Dutch National Flag)](Code/Book09-TwoPointers/E09.5-SortColors/)
 
 ## Book 10: Sliding Window
 
