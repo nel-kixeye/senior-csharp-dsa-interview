@@ -11,4 +11,38 @@ Expected Time:
 15 minutes
 
 Attempts:
-(record attempt 1, 2, 3 here — what you tried and what was wrong)
+Attempt 1 - WRONG. Returned false for EVERY input.
+  Two bugs, both the same root cause: the sequence never advanced.
+    - `n` was never reassigned, so GetSum(n) returned the same value forever.
+    - `newSum` was declared = 0 and never written, so `while (newSum != 1)`
+      and `return newSum == 1` both read a permanently-zero variable.
+  The set saw the same number twice immediately and reported a cycle.
+  NOTE: IsHappy(2) and IsHappy(4) still "passed" - returning false is right
+  for them by accident. Passing tests hid the bug.
+
+Attempt 2 - WRONG (2 of 5). Assigned newSum = GetSum(n), but `n` still never
+  changed, so it recomputed only the FIRST step over and over. 1, 2 and 4
+  passed; 19 and 7 failed - the ones whose answer is not decided on step one.
+
+Attempt 3 - compile error CS0103. Refactored to use `n` as the accumulator
+  and deleted `newSum`, but left one leftover reference in `while (newSum != 1)`.
+
+Attempt 4 - CORRECT. 10/10 pass including int.MaxValue and a 7-digit input.
+
+WHAT ACTUALLY FIXED IT
+  Collapsing to ONE variable. Attempts 1-2 tracked the sequence with both `n`
+  and `newSum` and had to keep them in sync - that is where both bugs lived.
+  Two variables tracking one concept is a bug factory.
+
+  Final loop:
+      while (n != 1) { n = GetSum(n); if (!seen.Add(n)) return false; }
+      return n == 1;
+
+  Same !seen.Add(x) idiom as E01.1, on a problem that looks nothing like it.
+
+STILL TO DO
+  - Follow-up: O(1) space with fast/slow pointers (Book 06). Floyd's works on
+    ANY repeated function application, not just linked lists.
+  - GetSum uses n.ToString(), which allocates a string per call. The
+    % 10 / /= 10 version is allocation-free - and needed for the O(1) variant.
+  - Delete the stray `using Microsoft.VisualBasic;` (IDE autocomplete accident).
