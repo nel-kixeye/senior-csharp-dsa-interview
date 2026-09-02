@@ -11,4 +11,50 @@ Expected Time:
 15 minutes
 
 Attempts:
-(record attempt 1, 2, 3 here — what you tried and what was wrong)
+Attempt 1 - WRONG APPROACH + compile error.
+  Tried to reverse the string and compare it to the original.
+    a) Strings are IMMUTABLE - s[i] has no setter (CS0200).
+    b) Even working, a reversed copy is O(n) SPACE - the header forbids it.
+    c) Nothing skipped punctuation, so the Panama case could never pass.
+  I also had the WRONG DEFINITION of palindrome - was thinking "same letters
+  reversed" (that is an ANAGRAM). Palindrome is about POSITION:
+  s[i] == s[n-1-i]. "aabb" and "abba" have identical letters; only "abba"
+  is a palindrome. That is exactly why a letter COUNT cannot decide it, and
+  why this is not a Dictionary problem.
+
+Attempt 2 - 4 failures including two INFINITE LOOPS.
+    a) Pointers never advanced on a MATCH - only the skip paths moved them.
+       "aa" hung forever. EVERY path through a while body must make progress
+       toward the exit condition.
+    b) Skips used `if`, so only ONE punctuation character was cleared.
+    c) No case-insensitive comparison.
+    d) ToCharArray() allocated a copy - breaks O(1) space.
+
+Attempt 3 - 2 failures. Fixed the hang (left++/right-- at the bottom),
+  the casing (ToLowerInvariant), and the space (AsSpan instead of
+  ToCharArray). Skips were still `if`.
+
+Attempt 4 - CORRECT. 7/7 plus a 14-case edge sweep (single char, all
+  punctuation odd/even, leading/trailing, embedded runs, digits).
+  O(n) time, O(1) space.
+
+THE LESSON
+  `if` is a `while` that runs AT MOST ONCE.
+  The question to ask: CAN THIS CONDITION STILL BE TRUE AFTER I HANDLE IT ONCE?
+    skip ONE punctuation char  -> if
+    skip a RUN of punctuation  -> while
+  "Consume all of X" is always a while. Writing `if` where the condition can
+  survive its own body is a bug that only appears on two-in-a-row inputs
+  (", " in the Panama string, or ".,;!" entirely).
+
+  Second lesson: every path through a loop body must make progress. The
+  match case did nothing, so it spun forever. That is the class of bug that
+  hangs a production service.
+
+TO TIGHTEN
+  Guard order: write `left < right && !char.IsLetterOrDigit(...)`, not the
+  reverse. && short-circuits, so the bound is checked BEFORE indexing. Safe
+  either way here (left never passes right) but that relies on an invariant
+  rather than construction.
+
+  AsSpan() was the right call - it is what makes the O(1) space claim honest.

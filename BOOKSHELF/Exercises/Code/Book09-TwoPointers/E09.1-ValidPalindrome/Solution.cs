@@ -5,6 +5,21 @@ public static class Solution
     // What do the pointers do when they land on punctuation?
     public static bool IsPalindrome(string s)
     {
-        throw new NotImplementedException();
+        var left = 0;
+        var right = s.Length - 1;
+        var chars = s.AsSpan();
+
+        while(left < right)
+        {
+            while(!char.IsLetterOrDigit(chars[left]) && left < right)
+                left++;
+            while(!char.IsLetterOrDigit(chars[right]) && left < right)
+                right--;
+            if(char.ToLowerInvariant(chars[left]) != char.ToLowerInvariant(chars[right]))
+                return false;
+            left++;
+            right--;
+        }
+        return true;
     }
 }

@@ -93,7 +93,7 @@ Guide: [Book08-SortedSet-SortedDictionary.md](Book08-SortedSet-SortedDictionary.
 
 Guide: [Book09-TwoPointers.md](Book09-TwoPointers.md)
 
-- [ ] [E09.1 — Valid Palindrome](Code/Book09-TwoPointers/E09.1-ValidPalindrome/)
+- [~] [E09.1 — Valid Palindrome](Code/Book09-TwoPointers/E09.1-ValidPalindrome/)
 - [ ] [E09.2 — Two Sum II (Input Sorted)](Code/Book09-TwoPointers/E09.2-TwoSumII/)
 - [ ] [E09.3 — 3Sum](Code/Book09-TwoPointers/E09.3-ThreeSum/)
 - [ ] [E09.4 — Container With Most Water](Code/Book09-TwoPointers/E09.4-ContainerWithMostWater/)
