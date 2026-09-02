@@ -5,6 +5,14 @@ public static class Solution
     // Lowercase only, so int[26] beats Dictionary here.
     public static int FirstUniqChar(string s)
     {
-        throw new NotImplementedException();
+        var dict = new Dictionary<char,int>();
+        foreach(var c in s)
+            dict[c] = dict.GetValueOrDefault(c) + 1;
+        for(var i = 0; i < s.Length; i++)
+        {
+            if(dict[s[i]] == 1)
+                return i;
+        }
+        return -1;
     }
 }

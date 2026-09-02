@@ -24,7 +24,7 @@ Guide: [Book01-HashSet.md](Book01-HashSet.md)
 Guide: [Book02-Dictionary.md](Book02-Dictionary.md)
 
 - [ ] [E02.1 — Two Sum](Code/Book02-Dictionary/E02.1-TwoSum/)
-- [ ] [E02.2 — First Unique Character](Code/Book02-Dictionary/E02.2-FirstUniqueCharacter/)
+- [~] [E02.2 — First Unique Character](Code/Book02-Dictionary/E02.2-FirstUniqueCharacter/)
 - [ ] [E02.3 — Group Anagrams](Code/Book02-Dictionary/E02.3-GroupAnagrams/)
 - [ ] [E02.4 — Top K Frequent Elements](Code/Book02-Dictionary/E02.4-TopKFrequentElements/)
 - [ ] [E02.5 — Isomorphic Strings](Code/Book02-Dictionary/E02.5-IsomorphicStrings/)

@@ -11,4 +11,44 @@ Expected Time:
 15 minutes
 
 Attempts:
-(record attempt 1, 2, 3 here — what you tried and what was wrong)
+Attempt 1 - compile errors. dict.GetValueOrDefault<int>() with no key;
+  FirstOrDefault over a Dictionary defaulted to -1 (elements are
+  KeyValuePair<char,int>, not int); charCollection.IndexOf(...) does not exist.
+
+Attempt 2 - dropped the type arg but still called GetValueOrDefault() with
+  NO ARGUMENT. It needs the KEY - that is the whole point of the method.
+
+Attempt 3 - pass 1 correct at last (and dropped the wasted ToCharArray).
+  Pass 2 still searched the DICTIONARY for the unique entry.
+
+Attempt 4 - restructured to two SEQUENTIAL loops (right move), but left
+  FirstOrDefault INSIDE the second loop. That is a hidden nested loop:
+  n iterations x a full dictionary scan = O(n^2), behind one method call.
+
+Attempt 5 - CORRECT. 9/9 pass. O(n) time, O(1) space.
+      if (dict[s[i]] == 1) return i;
+
+THE TWO LESSONS
+
+1. WHEN THE ANSWER IS A POSITION, ITERATE THE THING THAT HAS POSITIONS.
+   Walking `s` by index means the answer IS i when the condition hits.
+   Searching the dictionary throws the position away and then needs IndexOf
+   to recover it - an extra O(n) scan AND wrong, because Dictionary
+   enumeration order is UNDEFINED (not insertion order, not string order).
+
+2. NESTED *ITERATION* IS THE PROBLEM, NOT NESTED INDEXING.
+   dict[s[i]] is two indexers stacked and is O(1) - free.
+   dict.FirstOrDefault(...) inside a loop walks the collection - O(n^2).
+   C# lets you write iteration that LOOKS like a single operation.
+
+   Before putting a call inside a loop, ask: DOES THIS SCAN?
+     O(1), safe  : indexer, TryGetValue, HashSet.Add, HashSet.Contains
+     O(n), fatal : List.Contains, IndexOf, Any, First, Count(pred), most LINQ
+
+   Also learned: SEQUENTIAL loops ADD (n + n = O(n)). Only NESTED loops
+   multiply. Two passes here is not a compromise - it is required, since you
+   cannot know if s[0] is unique until the whole string has been counted.
+
+STILL TO DO
+  int[26] version - count[c - 'a']++. Faster, zero allocation, and the
+  expected answer when Dictionary/LINQ is discouraged. See MY-PRIORITIES.md.
