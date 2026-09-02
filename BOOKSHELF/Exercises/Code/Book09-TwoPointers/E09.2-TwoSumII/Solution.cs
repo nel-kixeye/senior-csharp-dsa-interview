@@ -6,6 +6,26 @@ public static class Solution
     // discard everything it skipped?
     public static int[] TwoSum(int[] numbers, int target)
     {
-        throw new NotImplementedException();
+        var left = 0;
+        var right = numbers.Length - 1;
+
+        while(left < right)
+        {
+            var sum = numbers[left] + numbers[right];
+            if(sum < target)
+            {
+                left++;
+                continue;
+            }
+            if(sum > target)
+            {
+                right--;
+                continue;
+            }
+            if(sum == target)
+                break;
+            
+        }
+        return [left + 1,right + 1];
     }
 }
