@@ -4,9 +4,12 @@ public static class Solution
     // Result must contain no duplicates. Order does not matter.
     public static int[] Intersection(int[] a, int[] b)
     {
-        var setA = a.ToHashSet<int>();
+        var smaller = a.Length < b.Length ? a : b;
+        var larger = a.Length >= b.Length ? a : b;
 
-        setA.IntersectWith(b);
-        return [.. setA];
+        var uniqueSet = smaller.ToHashSet<int>();
+        uniqueSet.IntersectWith(larger);
+
+        return uniqueSet.ToArray<int>();
     }
 }
