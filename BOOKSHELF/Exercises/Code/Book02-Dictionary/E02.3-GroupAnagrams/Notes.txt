@@ -11,4 +11,51 @@ Expected Time:
 20 minutes
 
 Attempts:
-(record attempt 1, 2, 3 here — what you tried and what was wrong)
+Attempt 1 - compile error + runtime bug.
+  a) return [.. groups] spread the DICTIONARY, yielding KeyValuePair.
+  b) Signature() looped over `characters` (the empty count array) instead of
+     `word`. c would be 0, so c - 'a' == -97 -> IndexOutOfRangeException.
+     Near-miss: both names were in scope and the loop read plausibly.
+
+Attempt 2 - Signature fixed (iterate `word`). Return still wrong.
+
+Attempt 3 - still wrong: swapped the VERB (ToList, ToArray<T>, spread) three
+  times while leaving the NOUN (`groups`) alone. Adding a type argument does
+  not change what a dictionary enumerates.
+
+Attempt 4 - CORRECT. 8/8 pass. O(n * L) time.
+      return [.. groups.Values];
+
+WHAT I CHOSE AND WHY
+  Went with the 26-COUNT SIGNATURE, not sorted characters.
+    sorted key   : O(L log L) per word, and word.OrderBy(...) is LINQ
+    count key    : O(L) per word, no sorting, survives a "no LINQ" constraint
+  Used string.Join('#', counts) as the key. The SEPARATOR matters: rendering
+  counts as digit characters collides once a count reaches 10
+  ("aaaaaaaaaaaab" vs other words). Verified with a 12-'a' test case.
+
+  Cannot build the key from a Dictionary<char,int> - enumeration order is
+  UNDEFINED, so two anagrams could produce different strings. int[26] has
+  fixed order BY CONSTRUCTION: slot 0 is always 'a'. That is what makes it a
+  usable signature.
+
+  int[26] itself cannot be the key - arrays are reference types, so two
+  arrays with identical contents are DIFFERENT keys. Convert to string for
+  value equality. (Same trap as CustomerId in E29.5.)
+
+THE DEBUGGING LESSON
+  When an error names a TYPE you did not expect, look at what you are READING
+  FROM, not what you are calling. The compiler said KeyValuePair three times
+  while I kept changing the conversion method.
+
+THE WIDER LESSON
+  In any grouping problem the algorithm is trivial - Dictionary<key,List<T>>,
+  one pass. ALL the difficulty is designing the canonical key: "what makes two
+  of these the same?"
+  Same shape: group shifted strings (gaps between letters), points on a line
+  (normalized slope), duplicate subtrees (serialization), and - in production -
+  dedup keys, cache keys, idempotency keys.
+
+NOTE
+  `using System.Text.RegularExpressions;` is unused - autocomplete stowaway,
+  same as the VisualBasic one in E01.3. Worth a glance before submitting.
