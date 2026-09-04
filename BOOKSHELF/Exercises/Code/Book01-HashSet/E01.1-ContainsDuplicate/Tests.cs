@@ -1,28 +1,14 @@
-public static class Tests
+using Xunit;
+
+public class ContainsDuplicateTests
 {
-    /*
-     * Test Case 1
-     * Input:    { 1, 2, 3, 1 }
-     * Expected: true
-     *
-     * Test Case 2
-     * Input:    { 1, 2, 3, 4 }
-     * Expected: false
-     *
-     * Test Case 3 - empty
-     * Input:    { }
-     * Expected: false
-     *
-     * Test Case 4 - single element
-     * Input:    { 7 }
-     * Expected: false
-     *
-     * Test Case 5 - all identical
-     * Input:    { 5, 5, 5, 5 }
-     * Expected: true
-     *
-     * Test Case 6 - negatives
-     * Input:    { -1, -2, -1 }
-     * Expected: true
-     */
+    [Theory]
+    [InlineData(new[] { 1, 2, 3, 1 }, true)]
+    [InlineData(new[] { 1, 2, 3, 4 }, false)]
+    [InlineData(new int[0], false)]
+    [InlineData(new[] { 7 }, false)]
+    [InlineData(new[] { 5, 5, 5, 5 }, true)]
+    [InlineData(new[] { -1, -2, -1 }, true)]
+    public void ContainsDuplicate_ReturnsSpecifiedResult(int[] nums, bool expected)
+        => Assert.Equal(expected, Solution.ContainsDuplicate(nums));
 }
