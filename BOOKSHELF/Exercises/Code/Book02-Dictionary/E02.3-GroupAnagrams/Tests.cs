@@ -1,24 +1,21 @@
-public static class Tests
+using Xunit;
+
+public class GroupAnagramsTests
 {
-    /*
-     * Test Case 1
-     * Input:    { "eat", "tea", "tan", "ate", "nat", "bat" }
-     * Expected: 3 groups - { eat, tea, ate }, { tan, nat }, { bat }   (any order)
-     *
-     * Test Case 2 - single empty string
-     * Input:    { "" }
-     * Expected: { { "" } }
-     *
-     * Test Case 3 - single word
-     * Input:    { "a" }
-     * Expected: { { "a" } }
-     *
-     * Test Case 4 - no anagrams at all
-     * Input:    { "abc", "def", "ghi" }
-     * Expected: 3 groups of 1
-     *
-     * Test Case 5 - all anagrams of each other
-     * Input:    { "abc", "bca", "cab" }
-     * Expected: 1 group of 3
-     */
+    [Theory]
+    [MemberData(nameof(Cases))]
+    public void GroupAnagrams_ReturnsSpecifiedGroups(string[] words, string[][] expected)
+        => Assert.Equal(Normalize(expected), Normalize(Solution.GroupAnagrams(words)));
+
+    public static IEnumerable<object[]> Cases =>
+    [
+        [new[] { "eat", "tea", "tan", "ate", "nat", "bat" }, new[] { new[] { "eat", "tea", "ate" }, new[] { "tan", "nat" }, new[] { "bat" } }],
+        [new[] { "" }, new[] { new[] { "" } }],
+        [new[] { "a" }, new[] { new[] { "a" } }],
+        [new[] { "abc", "def", "ghi" }, new[] { new[] { "abc" }, new[] { "def" }, new[] { "ghi" } }],
+        [new[] { "abc", "bca", "cab" }, new[] { new[] { "abc", "bca", "cab" } }]
+    ];
+
+    private static string[] Normalize(IEnumerable<IEnumerable<string>> groups) =>
+        groups.Select(group => string.Join(",", group.OrderBy(word => word))).OrderBy(group => group).ToArray();
 }

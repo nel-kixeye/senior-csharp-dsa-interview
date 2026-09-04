@@ -1,28 +1,14 @@
-public static class Tests
+using Xunit;
+
+public class IsomorphicStringsTests
 {
-    /*
-     * Test Case 1
-     * Input:    s = "egg", t = "add"
-     * Expected: true
-     *
-     * Test Case 2
-     * Input:    s = "foo", t = "bar"
-     * Expected: false
-     *
-     * Test Case 3 - THE ONE that breaks a single-map solution
-     * Input:    s = "badc", t = "baba"
-     * Expected: false      (d and c would both have to map to b/a)
-     *
-     * Test Case 4 - two chars mapping to one
-     * Input:    s = "ab", t = "aa"
-     * Expected: false
-     *
-     * Test Case 5 - identical strings
-     * Input:    s = "paper", t = "title"
-     * Expected: true
-     *
-     * Test Case 6 - different lengths
-     * Input:    s = "ab", t = "abc"
-     * Expected: false
-     */
+    [Theory]
+    [InlineData("egg", "add", true)]
+    [InlineData("foo", "bar", false)]
+    [InlineData("badc", "baba", false)]
+    [InlineData("ab", "aa", false)]
+    [InlineData("paper", "title", true)]
+    [InlineData("ab", "abc", false)]
+    public void IsIsomorphic_ReturnsSpecifiedResult(string s, string t, bool expected)
+        => Assert.Equal(expected, Solution.IsIsomorphic(s, t));
 }
