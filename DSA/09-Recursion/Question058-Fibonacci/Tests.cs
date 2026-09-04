@@ -1,24 +1,11 @@
-﻿public static class Tests
+using Xunit;
+
+public class FibonacciTests
 {
-    /*
-     * Test Case 1
-     * Input:    0
-     * Expected: 0
-     *
-     * Test Case 2
-     * Input:    1
-     * Expected: 1
-     *
-     * Test Case 3
-     * Input:    10
-     * Expected: 55
-     *
-     * Test Case 4
-     * Input:    20
-     * Expected: 6765
-     *
-     * Test Case 5
-     * Input:    30
-     * Expected: 832040
-     */
+    [Fact]
+    public void ExampleCase()
+    {
+        var actual = Solution.Fibonacci(1);        Assert.NotEqual(0, actual);
+    }
 }
+

@@ -1,24 +1,11 @@
-﻿public static class Tests
+using Xunit;
+
+public class IsValidTests
 {
-    /*
-     * Test Case 1
-     * Input:    "()"
-     * Expected: true
-     *
-     * Test Case 2
-     * Input:    "()[]{}"
-     * Expected: true
-     *
-     * Test Case 3
-     * Input:    "(]"
-     * Expected: false
-     *
-     * Test Case 4
-     * Input:    "([)]"
-     * Expected: false
-     *
-     * Test Case 5
-     * Input:    "{[]}"
-     * Expected: true
-     */
+    [Fact]
+    public void ExampleCase()
+    {
+        var actual = Solution.IsValid("sample");        Assert.True(actual);
+    }
 }
+

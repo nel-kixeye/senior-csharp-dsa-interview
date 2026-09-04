@@ -1,15 +1,20 @@
-﻿public static class Tests
+﻿using Xunit;
+
+public class CircularQueueTests
 {
-    /*
-     * CircularQueue(3)
-     * Enqueue(1) -> true
-     * Enqueue(2) -> true
-     * Enqueue(3) -> true
-     * Enqueue(4) -> false  (full)
-     * Rear()     -> 3
-     * IsFull()   -> true
-     * Dequeue()  -> true
-     * Enqueue(4) -> true
-     * Rear()     -> 4
-     */
+    [Fact]
+    public void CircularQueue_EnqueuesAndDequeuesAroundTheBuffer()
+    {
+        var queue = new CircularQueue(3);
+        Assert.True(queue.Enqueue(1));
+        Assert.True(queue.Enqueue(2));
+        Assert.True(queue.Enqueue(3));
+        Assert.False(queue.Enqueue(4));
+        Assert.Equal(3, queue.Rear());
+        Assert.True(queue.IsFull());
+
+        Assert.True(queue.Dequeue());
+        Assert.True(queue.Enqueue(4));
+        Assert.Equal(4, queue.Rear());
+    }
 }

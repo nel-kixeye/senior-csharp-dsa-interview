@@ -11,39 +11,4 @@ Expected Time:
 15 minutes
 
 Attempts:
-Attempt 1 - IndexOutOfRangeException on every case. Three bugs:
-  a) right = numbers.Length  (should be Length - 1). Crashed immediately.
-  b) The sum > target branch moved BOTH pointers (left++ AND right--).
-     Too big means you need a SMALLER total: only right-- is justified.
-     Moving left up makes the sum bigger and skips unexamined candidates.
-  c) Returned 0-based indices; the problem is 1-INDEXED.
-
-Attempt 2 - a) and b) fixed. All five cases returned the CORRECT PAIR,
-  every one off by exactly +1. Uniform offset = convention mismatch, not
-  a logic bug.
-
-Attempt 3 - CORRECT. 5/5. O(n) time, O(1) space.
-
-THE ARGUMENT (the point of this exercise)
-  My first answer: "sorted, so move left up to increase the sum." True but
-  incomplete. The sharper version, which is what makes it O(n):
-
-    If numbers[left] + numbers[right] is TOO SMALL, and numbers[right] is the
-    LARGEST remaining value, then numbers[left] paired with anything else
-    still in range is even smaller. So numbers[left] cannot be part of ANY
-    solution - discard it permanently.
-
-  Not "move left because it grows the sum" but "move left because left is
-  now PROVABLY DEAD." That is why one step eliminates an entire row of the
-  n x n table, giving O(n) instead of O(n^2).
-
-  Mirrored for too-big: right cannot pair with anything, since left is the
-  smallest remaining.
-
-  THIS IS THE ARGUMENT 3SUM RUNS ON - fix one element, two-point the rest.
-
-DEBUGGING LESSON
-  Read the PATTERN ACROSS failures, not any single failure. Five wrong
-  answers all off by the same constant = indexing base / bounds convention.
-  Wrong in DIFFERENT ways = broken logic.
-  (Same as E01.2, where every failure had a.Length == b.Length.)
+(record attempt 1, 2, 3 here — what you tried and what was wrong)

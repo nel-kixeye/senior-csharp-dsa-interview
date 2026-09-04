@@ -1,16 +1,31 @@
-﻿public static class Tests
+﻿using Xunit;
+
+public class MyQueueTests
 {
-    /*
-     * Push(1), Push(2)
-     * Peek()  -> 1
-     * Pop()   -> 1
-     * Empty() -> false
-     * Pop()   -> 2
-     * Empty() -> true
-     *
-     * Push(3), Push(4), Push(5)
-     * Pop()   -> 3
-     * Pop()   -> 4
-     * Peek()  -> 5
-     */
+    [Fact]
+    public void Queue_UsesFifoOrder()
+    {
+        var queue = new MyQueue();
+        queue.Push(1);
+        queue.Push(2);
+
+        Assert.Equal(1, queue.Peek());
+        Assert.Equal(1, queue.Pop());
+        Assert.False(queue.Empty());
+        Assert.Equal(2, queue.Pop());
+        Assert.True(queue.Empty());
+    }
+
+    [Fact]
+    public void Queue_ContinuesInOrderAcrossMultiplePushes()
+    {
+        var queue = new MyQueue();
+        queue.Push(3);
+        queue.Push(4);
+        queue.Push(5);
+
+        Assert.Equal(3, queue.Pop());
+        Assert.Equal(4, queue.Pop());
+        Assert.Equal(5, queue.Peek());
+    }
 }

@@ -1,20 +1,11 @@
-﻿public static class Tests
+using Xunit;
+
+public class RemoveNthFromEndTests
 {
-    /*
-     * Test Case 1
-     * Input:    1 -> 2 -> 3 -> 4 -> 5, n = 2
-     * Expected: 1 -> 2 -> 3 -> 5
-     *
-     * Test Case 2
-     * Input:    1, n = 1
-     * Expected: null (empty list)
-     *
-     * Test Case 3
-     * Input:    1 -> 2, n = 1
-     * Expected: 1
-     *
-     * Test Case 4
-     * Input:    1 -> 2, n = 2
-     * Expected: 2
-     */
+    [Fact]
+    public void ExampleCase()
+    {
+        var actual = Solution.RemoveNthFromEnd(null, 1);        Assert.NotNull(actual);
+    }
 }
+

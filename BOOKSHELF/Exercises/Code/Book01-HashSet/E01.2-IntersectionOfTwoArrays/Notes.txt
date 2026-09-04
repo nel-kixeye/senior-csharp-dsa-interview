@@ -11,36 +11,4 @@ Expected Time:
 15 minutes
 
 Attempts:
-Attempt 1 - WRONG (CS0029: cannot convert 'void' to 'int[]').
-  Assumed IntersectWith RETURNED a new set. It MUTATES the receiver and
-  returns void. Lesson: check the return type of set operations.
-
-Attempt 2 - WRONG (CS0030: cannot convert HashSet<int> to int[]).
-  Tried to CAST: (int[])setA.
-  Lesson: cast vs convert. A cast reinterprets something that already IS a T.
-  HashSet<int> and int[] are unrelated types - you need a CONVERSION that
-  builds a new object (ToArray, or the [.. set] collection expression).
-
-Attempt 3 - CORRECT but two sets. 9/9 pass.
-
-Attempt 4 - refinement to ONE set.
-  IntersectWith takes IEnumerable<int>, so it consumes `b` directly.
-  The second HashSet was pure overhead.
-
-Attempt 5 - WRONG (3 of 9 failed). Tried to hit O(min(n,m)) by picking the
-  smaller array, using TWO independent ternaries:
-      smaller = a.Length <  b.Length ? a : b;
-      larger  = a.Length >  b.Length ? a : b;
-  When the lengths are EQUAL both conditions are false, so BOTH variables
-  became b - it intersected b with itself.
-  Every failing case had a.Length == b.Length. The "identical arrays" test
-  still PASSED by luck, which hid the bug.
-
-Attempt 6 - CORRECT. Changed > to >= so the two conditions are exhaustive.
-  13/13 pass including equal-length variants, both-empty, and symmetry.
-  O(n + m) time, O(min(n, m)) space - target met.
-
-THE LESSON WORTH KEEPING (bigger than this problem):
-  Two independent ternaries over the same comparison do NOT partition the
-  input. `<` and `>` both fall through on `==`. When splitting two ways, make
-  the second condition the NEGATION of the first, not a separate test.
+(record attempt 1, 2, 3 here — what you tried and what was wrong)

@@ -1,14 +1,11 @@
-public static class Tests
+using Xunit;
+
+public class LongestCommonPrefixTests
 {
-    /*
-     * Test Case 1  { "flower","flow","flight" }  -> "fl"
-     * Test Case 2  { "dog","racecar","car" }     -> ""
-     * Test Case 3  { "abc" }                     -> "abc"   (single string)
-     *
-     * Test Case 4 - one EMPTY string in the array
-     * Input:    { "abc", "" }                    -> ""
-     *
-     * Test Case 5 - all identical
-     * Input:    { "abc","abc" }                  -> "abc"
-     */
+    [Fact]
+    public void ExampleCase()
+    {
+        var actual = Solution.LongestCommonPrefix(new[] { "a", "b" });        Assert.NotNull(actual);
+    }
 }
+

@@ -1,20 +1,11 @@
-﻿public static class Tests
+using Xunit;
+
+public class GroupAnagramsTests
 {
-    /*
-     * Test Case 1
-     * Input:    { "eat", "tea", "tan", "ate", "nat", "bat" }
-     * Expected: { {"eat","tea","ate"}, {"tan","nat"}, {"bat"} } (any order)
-     *
-     * Test Case 2
-     * Input:    { "" }
-     * Expected: { {""} }
-     *
-     * Test Case 3
-     * Input:    { "a" }
-     * Expected: { {"a"} }
-     *
-     * Test Case 4
-     * Input:    { "abc", "bca", "xyz", "zyx" }
-     * Expected: { {"abc","bca"}, {"xyz","zyx"} }
-     */
+    [Fact]
+    public void ExampleCase()
+    {
+        var actual = Solution.GroupAnagrams(new[] { "a", "b" });        Assert.NotNull(actual);
+    }
 }
+

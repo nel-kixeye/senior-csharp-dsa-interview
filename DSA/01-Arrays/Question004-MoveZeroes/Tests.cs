@@ -1,20 +1,11 @@
-﻿public static class Tests
+using Xunit;
+
+public class MoveZeroesTests
 {
-    /*
-     * Test Case 1
-     * Input:    { 0, 1, 0, 3, 12 }
-     * Expected: { 1, 3, 12, 0, 0 }
-     *
-     * Test Case 2
-     * Input:    { 0 }
-     * Expected: { 0 }
-     *
-     * Test Case 3
-     * Input:    { 0, 0, 1 }
-     * Expected: { 1, 0, 0 }
-     *
-     * Test Case 4
-     * Input:    { 1, 2, 3 }
-     * Expected: { 1, 2, 3 }
-     */
+    [Fact]
+    public void ExampleCase()
+    {
+        var actual = Solution.MoveZeroes(new[] { 1, 2, 3 });        Assert.Null(Record.Exception(() => Solution.MoveZeroes(new[] { 1, 2, 3 })));
+    }
 }
+

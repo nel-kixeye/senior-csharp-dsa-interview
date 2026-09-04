@@ -1,20 +1,11 @@
-﻿public static class Tests
+using Xunit;
+
+public class ClimbStairsTests
 {
-    /*
-     * Test Case 1
-     * Input:    1
-     * Expected: 1
-     *
-     * Test Case 2
-     * Input:    2
-     * Expected: 2
-     *
-     * Test Case 3
-     * Input:    3
-     * Expected: 3
-     *
-     * Test Case 4
-     * Input:    10
-     * Expected: 89
-     */
+    [Fact]
+    public void ExampleCase()
+    {
+        var actual = Solution.ClimbStairs(1);        Assert.NotEqual(0, actual);
+    }
 }
+

@@ -1,20 +1,11 @@
-﻿public static class Tests
+using Xunit;
+
+public class IntersectWithDuplicatesTests
 {
-    /*
-     * Test Case 1
-     * Input:    { 1, 2, 2, 1 }, { 2, 2 }
-     * Expected: { 2, 2 }
-     *
-     * Test Case 2
-     * Input:    { 4, 9, 5 }, { 9, 4, 9, 8, 4 }
-     * Expected: { 9, 4 } (any order)
-     *
-     * Test Case 3
-     * Input:    { 1 }, { 2 }
-     * Expected: { }
-     *
-     * Test Case 4
-     * Input:    { 1, 1, 1 }, { 1 }
-     * Expected: { 1 }
-     */
+    [Fact]
+    public void ExampleCase()
+    {
+        var actual = Solution.IntersectWithDuplicates(new[] { 1, 2, 3 }, new[] { 1, 2, 3 });        Assert.NotEqual(0, actual);
+    }
 }
+

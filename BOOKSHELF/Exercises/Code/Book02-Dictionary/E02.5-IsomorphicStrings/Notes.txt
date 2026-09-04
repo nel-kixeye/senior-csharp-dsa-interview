@@ -11,46 +11,4 @@ Expected Time:
 20 minutes
 
 Attempts:
-Attempt 1 - WRONG (4 of 8). Single Dictionary<char,char> with TryAdd.
-  TWO separate bugs:
-    a) TryAdd returning false is NOT an error. It only means "a mapping
-       already exists" - it does not say whether that mapping AGREES.
-       "egg"->"add" was rejected because 'g' repeats, which every
-       isomorphic pair does.
-    b) No reverse check. "ab"->"aa" passed: keys 'a' and 'b' are distinct
-       so the dictionary never objected, but BOTH map to 'a'.
-  NOTE: "foo"->"bar" passed for the WRONG reason - it hit bug (a)'s early
-  return and happened to be false anyway.
-
-Attempt 2 - WRONG DIRECTION, abandoned. Rewrote as pair-counting with two
-  dictionaries, one filled forward and one backward.
-  Why it could never work: both count the SAME (s[i], t[i]) pairs, just
-  visited in a different order - and a Dictionary has no notion of order.
-  sig1 and sig2 are always identical, so it always returns true.
-  "Two directions" means map s->t AND t->s. It does NOT mean walk the
-  string forwards and backwards.
-  (Also: char + char is INTEGER ADDITION in C#, not concatenation.
-   'e' + 'a' == 198. And TryGetValue needs an out parameter.)
-
-Attempt 3 - bug (a) fixed with TryGetValue. tMatch declared but never used,
-  so bug (b) survived.
-
-Attempt 4 - CORRECT. 10/10 pass. O(n) time, O(1) space.
-
-THE LESSON
-  A Dictionary<K,V> enforces "each KEY has exactly one value" for free.
-  It enforces NOTHING about values being unique - two keys may point at the
-  same value quite legally.
-
-  So whenever a problem describes a ONE-TO-ONE relationship (a BIJECTION),
-  one dictionary gives you only half the constraint. You need the reverse
-  map as well.
-
-  Same shape appears in: Word Pattern, and any "can I consistently rename
-  A to B" check.
-
-REFINEMENTS (understood, not applied)
-  - Both checks fit in a SINGLE loop - you are already at index i with both
-    s[i] and t[i] in hand. Same O(n), one pass, less code.
-  - Watch for declaring a variable and never using it (tMatch sat unused for
-    a whole attempt). The compiler does not warn when it is initialized.
+(record attempt 1, 2, 3 here — what you tried and what was wrong)

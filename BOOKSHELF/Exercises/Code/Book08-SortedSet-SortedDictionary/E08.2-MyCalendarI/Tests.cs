@@ -1,19 +1,33 @@
-public static class Tests
+using Xunit;
+
+public class MyCalendarTests
 {
-    /*
-     * Test Case 1
-     * Book(10,20) -> true, Book(15,25) -> false, Book(20,30) -> true
-     *
-     * Test Case 2 - TOUCHING endpoints must succeed (half-open)
-     * Book(10,20) -> true, Book(20,30) -> true
-     *
-     * Test Case 3 - new booking fully CONTAINS an existing one
-     * Book(10,20) -> true, Book(5,30) -> false
-     *
-     * Test Case 4 - new booking fully INSIDE an existing one
-     * Book(10,20) -> true, Book(12,15) -> false
-     *
-     * Test Case 5 - identical booking
-     * Book(10,20) -> true, Book(10,20) -> false
-     */
+    [Fact]
+    public void Book_RejectsOverlappingAppointments()
+    {
+        var calendar = new MyCalendar();
+
+        Assert.True(calendar.Book(10, 20));
+        Assert.False(calendar.Book(15, 25));
+        Assert.True(calendar.Book(20, 30));
+    }
+
+    [Fact]
+    public void Book_AllowsTouchingEndpoints_ForHalfOpenRanges()
+    {
+        var calendar = new MyCalendar();
+
+        Assert.True(calendar.Book(10, 20));
+        Assert.True(calendar.Book(20, 30));
+    }
+
+    [Fact]
+    public void Book_RejectsIdenticalAppointments()
+    {
+        var calendar = new MyCalendar();
+
+        Assert.True(calendar.Book(10, 20));
+        Assert.False(calendar.Book(10, 20));
+    }
 }
+

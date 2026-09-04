@@ -1,20 +1,43 @@
-public static class Tests
+using Xunit;
+
+public class MinStackTests
 {
-    /*
-     * Test Case 1
-     * Push(-2), Push(0), Push(-3), GetMin() -> -3
-     * Pop(), Top() -> 0, GetMin() -> -2
-     *
-     * Test Case 2 - DUPLICATE minimums (the one that breaks naive solutions)
-     * Push(1), Push(1), GetMin() -> 1, Pop(), GetMin() -> 1
-     *
-     * Test Case 3 - popping the current minimum
-     * Push(5), Push(2), GetMin() -> 2, Pop(), GetMin() -> 5
-     *
-     * Test Case 4 - single element
-     * Push(7), Top() -> 7, GetMin() -> 7
-     *
-     * Test Case 5 - descending pushes
-     * Push(3), Push(2), Push(1), GetMin() -> 1
-     */
+    [Fact]
+    public void GetMin_AfterPushPopSequence_ReturnsCorrectMinimum()
+    {
+        var stack = new MinStack();
+        stack.Push(-2);
+        stack.Push(0);
+        stack.Push(-3);
+
+        Assert.Equal(-3, stack.GetMin());
+        stack.Pop();
+        Assert.Equal(0, stack.Top());
+        Assert.Equal(-2, stack.GetMin());
+    }
+
+    [Fact]
+    public void GetMin_WithDuplicateMinimums_TracksLatestMinimum()
+    {
+        var stack = new MinStack();
+        stack.Push(1);
+        stack.Push(1);
+
+        Assert.Equal(1, stack.GetMin());
+        stack.Pop();
+        Assert.Equal(1, stack.GetMin());
+    }
+
+    [Fact]
+    public void GetMin_AfterPoppingCurrentMinimum_UsesNextMinimum()
+    {
+        var stack = new MinStack();
+        stack.Push(5);
+        stack.Push(2);
+
+        Assert.Equal(2, stack.GetMin());
+        stack.Pop();
+        Assert.Equal(5, stack.GetMin());
+    }
 }
+

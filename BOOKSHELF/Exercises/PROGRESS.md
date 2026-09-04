@@ -4,8 +4,7 @@
 has not become instinct yet.
 
 Mark `[x]` when you solved it **without** taking a hint rung. Mark `[~]` when you
-needed one. Mark `[!]` when you had to be shown the answer — those are the
-ones to redo cold. The `[~]` and `[!]` entries are your revision list.
+needed one. The `[~]` entries are your revision list.
 
 Each line links to its scaffolded folder. The guide (statement + hints) is
 `BookNN-Name.md` in this directory.
@@ -14,9 +13,9 @@ Each line links to its scaffolded folder. The guide (statement + hints) is
 
 Guide: [Book01-HashSet.md](Book01-HashSet.md)
 
-- [x] [E01.1 — Contains Duplicate](Code/Book01-HashSet/E01.1-ContainsDuplicate/)
-- [~] [E01.2 — Intersection of Two Arrays](Code/Book01-HashSet/E01.2-IntersectionOfTwoArrays/)
-- [~] [E01.3 — Happy Number](Code/Book01-HashSet/E01.3-HappyNumber/)
+- [ ] [E01.1 — Contains Duplicate](Code/Book01-HashSet/E01.1-ContainsDuplicate/)
+- [ ] [E01.2 — Intersection of Two Arrays](Code/Book01-HashSet/E01.2-IntersectionOfTwoArrays/)
+- [ ] [E01.3 — Happy Number](Code/Book01-HashSet/E01.3-HappyNumber/)
 - [ ] [E01.4 — Longest Consecutive Sequence](Code/Book01-HashSet/E01.4-LongestConsecutiveSequence/)
 - [ ] [E01.5 — Valid Sudoku](Code/Book01-HashSet/E01.5-ValidSudoku/)
 
@@ -25,10 +24,10 @@ Guide: [Book01-HashSet.md](Book01-HashSet.md)
 Guide: [Book02-Dictionary.md](Book02-Dictionary.md)
 
 - [ ] [E02.1 — Two Sum](Code/Book02-Dictionary/E02.1-TwoSum/)
-- [~] [E02.2 — First Unique Character](Code/Book02-Dictionary/E02.2-FirstUniqueCharacter/)
-- [~] [E02.3 — Group Anagrams](Code/Book02-Dictionary/E02.3-GroupAnagrams/)
+- [ ] [E02.2 — First Unique Character](Code/Book02-Dictionary/E02.2-FirstUniqueCharacter/)
+- [ ] [E02.3 — Group Anagrams](Code/Book02-Dictionary/E02.3-GroupAnagrams/)
 - [ ] [E02.4 — Top K Frequent Elements](Code/Book02-Dictionary/E02.4-TopKFrequentElements/)
-- [~] [E02.5 — Isomorphic Strings](Code/Book02-Dictionary/E02.5-IsomorphicStrings/)
+- [ ] [E02.5 — Isomorphic Strings](Code/Book02-Dictionary/E02.5-IsomorphicStrings/)
 
 ## Book 03: Array / List
 
@@ -94,11 +93,11 @@ Guide: [Book08-SortedSet-SortedDictionary.md](Book08-SortedSet-SortedDictionary.
 
 Guide: [Book09-TwoPointers.md](Book09-TwoPointers.md)
 
-- [~] [E09.1 — Valid Palindrome](Code/Book09-TwoPointers/E09.1-ValidPalindrome/)
-- [~] [E09.2 — Two Sum II (Input Sorted)](Code/Book09-TwoPointers/E09.2-TwoSumII/)
-- [!] [E09.3 — 3Sum](Code/Book09-TwoPointers/E09.3-ThreeSum/)
+- [ ] [E09.1 — Valid Palindrome](Code/Book09-TwoPointers/E09.1-ValidPalindrome/)
+- [ ] [E09.2 — Two Sum II (Input Sorted)](Code/Book09-TwoPointers/E09.2-TwoSumII/)
+- [ ] [E09.3 — 3Sum](Code/Book09-TwoPointers/E09.3-ThreeSum/)
 - [ ] [E09.4 — Container With Most Water](Code/Book09-TwoPointers/E09.4-ContainerWithMostWater/)
-- [~] [E09.5 — Sort Colors (Dutch National Flag)](Code/Book09-TwoPointers/E09.5-SortColors/)
+- [ ] [E09.5 — Sort Colors (Dutch National Flag)](Code/Book09-TwoPointers/E09.5-SortColors/)
 
 ## Book 10: Sliding Window
 

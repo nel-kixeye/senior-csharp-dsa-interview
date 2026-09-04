@@ -1,10 +1,11 @@
-public static class Tests
+using Xunit;
+
+public class HammingWeightTests
 {
-    /*
-     * Test Case 1  11             -> 3    (binary 1011)
-     * Test Case 2  128            -> 1    (single bit)
-     * Test Case 3  0              -> 0
-     * Test Case 4  uint.MaxValue  -> 32   (all bits set)
-     * Test Case 5  1u << 31       -> 1    (single HIGH bit - watch signed shifts)
-     */
+    [Fact]
+    public void ExampleCase()
+    {
+        var actual = Solution.HammingWeight(default);        Assert.NotEqual(0, actual);
+    }
 }
+

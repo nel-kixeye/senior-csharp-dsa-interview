@@ -92,7 +92,6 @@ implement everything by hand. Both modes are trained here, and they are labeled.
 BOOKSHELF/
 ├── README.md          ← you are here
 ├── INDEX.md           ← signal → book flashcard table (the money page)
-├── MY-PRIORITIES.md   ← personal: what to study first, and why
 ├── Books/             ← 33 books, Book01..Book33
 ├── Drills/            ← recognition: "WHICH book?"
 │   ├── BeforeYouLoop.md

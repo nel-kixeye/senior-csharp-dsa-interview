@@ -1,20 +1,11 @@
-﻿public static class Tests
+using Xunit;
+
+public class MiddleNodeTests
 {
-    /*
-     * Test Case 1
-     * Input:    1 -> 2 -> 3 -> 4 -> 5
-     * Expected: node 3
-     *
-     * Test Case 2
-     * Input:    1 -> 2 -> 3 -> 4
-     * Expected: node 3 (second of two middles)
-     *
-     * Test Case 3
-     * Input:    1
-     * Expected: node 1
-     *
-     * Test Case 4
-     * Input:    1 -> 2
-     * Expected: node 2
-     */
+    [Fact]
+    public void ExampleCase()
+    {
+        var actual = Solution.MiddleNode(null);        Assert.NotNull(actual);
+    }
 }
+

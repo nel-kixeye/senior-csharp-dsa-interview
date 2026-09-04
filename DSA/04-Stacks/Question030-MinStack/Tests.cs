@@ -1,19 +1,33 @@
-﻿public static class Tests
+﻿using Xunit;
+
+public class MinStackTests
 {
-    /*
-     * Test Case 1
-     * Push(-2), Push(0), Push(-3)
-     * GetMin() -> -3
-     * Pop()
-     * Top()    -> 0
-     * GetMin() -> -2
-     *
-     * Test Case 2
-     * Push(1), Push(2)
-     * GetMin() -> 1
-     * Push(0)
-     * GetMin() -> 0
-     * Pop()
-     * GetMin() -> 1
-     */
+    [Fact]
+    public void GetMin_AfterPushPopSequence_ReturnsCorrectMinimum()
+    {
+        var stack = new MinStack();
+        stack.Push(-2);
+        stack.Push(0);
+        stack.Push(-3);
+
+        Assert.Equal(-3, stack.GetMin());
+        stack.Pop();
+        Assert.Equal(0, stack.Top());
+        Assert.Equal(-2, stack.GetMin());
+    }
+
+    [Fact]
+    public void GetMin_AfterPushingLowerValue_ReturnsUpdatedMinimum()
+    {
+        var stack = new MinStack();
+        stack.Push(1);
+        stack.Push(2);
+        Assert.Equal(1, stack.GetMin());
+
+        stack.Push(0);
+        Assert.Equal(0, stack.GetMin());
+
+        stack.Pop();
+        Assert.Equal(1, stack.GetMin());
+    }
 }

@@ -1,14 +1,22 @@
-﻿public static class Tests
+﻿using Xunit;
+
+public class BrowserHistoryTests
 {
-    /*
-     * Start: "leetcode.com"
-     * Visit("google.com"), Visit("facebook.com"), Visit("youtube.com")
-     * Back(1)    -> "facebook.com"
-     * Back(1)    -> "google.com"
-     * Forward(1) -> "facebook.com"
-     * Visit("linkedin.com")  -- forward history cleared
-     * Forward(2) -> "linkedin.com"  (can't go further)
-     * Back(2)    -> "google.com"
-     * Back(7)    -> "leetcode.com"  (clamped to beginning)
-     */
+    [Fact]
+    public void BrowserHistory_BackAndForward_NavigateHistoryCorrectly()
+    {
+        var browser = new BrowserHistory("leetcode.com");
+        browser.Visit("google.com");
+        browser.Visit("facebook.com");
+        browser.Visit("youtube.com");
+
+        Assert.Equal("facebook.com", browser.Back(1));
+        Assert.Equal("google.com", browser.Back(2));
+        Assert.Equal("facebook.com", browser.Forward(1));
+
+        browser.Visit("linkedin.com");
+        Assert.Equal("linkedin.com", browser.Forward(2));
+        Assert.Equal("google.com", browser.Back(2));
+        Assert.Equal("leetcode.com", browser.Back(7));
+    }
 }
