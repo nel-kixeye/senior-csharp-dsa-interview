@@ -1,23 +1,36 @@
-public static class Tests
+using Xunit;
+
+public class ValidSudokuTests
 {
-    /*
-     * Test Case 1 - the standard valid board (see Program.cs)
-     * Expected: true
-     *
-     * Test Case 2 - duplicate in a COLUMN
-     * Change row 0 col 0 from '5' to '8' in the valid board (col 0 already has '8')
-     * Expected: false
-     *
-     * Test Case 3 - duplicate in a ROW
-     * Change row 0 col 2 from '.' to '3'
-     * Expected: false
-     *
-     * Test Case 4 - duplicate in a BOX only (row and column both still clean)
-     * Change row 1 col 1 from '.' to '3'   (top-left box already has '3' at [0][1])
-     * Expected: false
-     *
-     * Test Case 5 - completely empty board
-     * All 81 cells '.'
-     * Expected: true
-     */
+    [Fact]
+    public void IsValidSudoku_ReturnsTrue_ForStandardValidBoard()
+        => Assert.True(Solution.IsValidSudoku(CreateValidBoard()));
+
+    [Theory]
+    [InlineData(0, 0, '8')]
+    [InlineData(0, 2, '3')]
+    [InlineData(1, 1, '3')]
+    public void IsValidSudoku_ReturnsFalse_ForSpecifiedDuplicate(int row, int column, char value)
+    {
+        var board = CreateValidBoard();
+        board[row][column] = value;
+        Assert.False(Solution.IsValidSudoku(board));
+    }
+
+    [Fact]
+    public void IsValidSudoku_ReturnsTrue_ForCompletelyEmptyBoard()
+        => Assert.True(Solution.IsValidSudoku(Enumerable.Range(0, 9).Select(_ => Enumerable.Repeat('.', 9).ToArray()).ToArray()));
+
+    private static char[][] CreateValidBoard() =>
+    [
+        ['5', '3', '.', '.', '7', '.', '.', '.', '.'],
+        ['6', '.', '.', '1', '9', '5', '.', '.', '.'],
+        ['.', '9', '8', '.', '.', '.', '.', '6', '.'],
+        ['8', '.', '.', '.', '6', '.', '.', '.', '3'],
+        ['4', '.', '.', '8', '.', '3', '.', '.', '1'],
+        ['7', '.', '.', '.', '2', '.', '.', '.', '6'],
+        ['.', '6', '.', '.', '.', '.', '2', '8', '.'],
+        ['.', '.', '.', '4', '1', '9', '.', '.', '5'],
+        ['.', '.', '.', '.', '8', '.', '.', '7', '9']
+    ];
 }

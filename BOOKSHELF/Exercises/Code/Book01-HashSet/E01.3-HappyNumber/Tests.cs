@@ -1,24 +1,13 @@
-public static class Tests
+using Xunit;
+
+public class HappyNumberTests
 {
-    /*
-     * Test Case 1
-     * Input:    19
-     * Expected: true
-     *
-     * Test Case 2
-     * Input:    2
-     * Expected: false
-     *
-     * Test Case 3 - already happy
-     * Input:    1
-     * Expected: true
-     *
-     * Test Case 4
-     * Input:    7
-     * Expected: true
-     *
-     * Test Case 5 - known unhappy cycle entry
-     * Input:    4
-     * Expected: false      (4 -> 16 -> 37 -> 58 -> 89 -> 145 -> 42 -> 20 -> 4)
-     */
+    [Theory]
+    [InlineData(19, true)]
+    [InlineData(2, false)]
+    [InlineData(1, true)]
+    [InlineData(7, true)]
+    [InlineData(4, false)]
+    public void IsHappy_ReturnsSpecifiedResult(int n, bool expected)
+        => Assert.Equal(expected, Solution.IsHappy(n));
 }

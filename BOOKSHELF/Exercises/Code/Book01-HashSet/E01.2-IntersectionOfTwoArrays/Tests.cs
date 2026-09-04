@@ -1,24 +1,17 @@
-public static class Tests
+using Xunit;
+
+public class IntersectionOfTwoArraysTests
 {
-    /*
-     * Test Case 1
-     * Input:    a = { 1, 2, 2, 1 }, b = { 2, 2 }
-     * Expected: { 2 }                    (unique only)
-     *
-     * Test Case 2
-     * Input:    a = { 4, 9, 5 }, b = { 9, 4, 9, 8, 4 }
-     * Expected: { 4, 9 }  (any order)
-     *
-     * Test Case 3 - no overlap
-     * Input:    a = { 1, 2 }, b = { 3, 4 }
-     * Expected: { }
-     *
-     * Test Case 4 - one empty
-     * Input:    a = { }, b = { 1, 2 }
-     * Expected: { }
-     *
-     * Test Case 5 - identical arrays
-     * Input:    a = { 1, 2, 3 }, b = { 1, 2, 3 }
-     * Expected: { 1, 2, 3 }
-     */
+    [Theory]
+    [InlineData(new[] { 1, 2, 2, 1 }, new[] { 2, 2 }, new[] { 2 })]
+    [InlineData(new[] { 4, 9, 5 }, new[] { 9, 4, 9, 8, 4 }, new[] { 4, 9 })]
+    [InlineData(new[] { 1, 2 }, new[] { 3, 4 }, new int[0])]
+    [InlineData(new int[0], new[] { 1, 2 }, new int[0])]
+    [InlineData(new[] { 1, 2, 3 }, new[] { 1, 2, 3 }, new[] { 1, 2, 3 })]
+    public void Intersection_ReturnsSpecifiedUniqueValues(int[] a, int[] b, int[] expected)
+    {
+        var actual = Solution.Intersection(a, b);
+        Assert.Equal(expected.OrderBy(value => value), actual.OrderBy(value => value));
+        Assert.Equal(actual.Length, actual.Distinct().Count());
+    }
 }
