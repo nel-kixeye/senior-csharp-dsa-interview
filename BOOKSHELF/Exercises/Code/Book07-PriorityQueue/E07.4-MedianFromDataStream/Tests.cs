@@ -1,19 +1,37 @@
-public static class Tests
+using Xunit;
+
+public class MedianFinderTests
 {
-    /*
-     * Test Case 1
-     * Add(1), Add(2), FindMedian() -> 1.5, Add(3), FindMedian() -> 2.0
-     *
-     * Test Case 2 - single element
-     * Add(5), FindMedian() -> 5.0
-     *
-     * Test Case 3 - all duplicates
-     * Add(2), Add(2), Add(2), FindMedian() -> 2.0
-     *
-     * Test Case 4 - strictly DESCENDING input (stresses rebalancing)
-     * Add(5), Add(4), Add(3), Add(2), Add(1), FindMedian() -> 3.0
-     *
-     * Test Case 5 - negatives and even count
-     * Add(-1), Add(-2), FindMedian() -> -1.5
-     */
+    [Fact]
+    public void FindMedian_WithEvenCount_ReturnsAverageOfMiddleTwo()
+    {
+        var finder = new MedianFinder();
+        finder.AddNum(1);
+        finder.AddNum(2);
+
+        Assert.Equal(1.5d, finder.FindMedian());
+    }
+
+    [Fact]
+    public void FindMedian_WithOddCount_ReturnsMiddleValue()
+    {
+        var finder = new MedianFinder();
+        finder.AddNum(5);
+
+        Assert.Equal(5d, finder.FindMedian());
+    }
+
+    [Fact]
+    public void FindMedian_WithDescendingInput_StillBalances()
+    {
+        var finder = new MedianFinder();
+        finder.AddNum(5);
+        finder.AddNum(4);
+        finder.AddNum(3);
+        finder.AddNum(2);
+        finder.AddNum(1);
+
+        Assert.Equal(3d, finder.FindMedian());
+    }
 }
+

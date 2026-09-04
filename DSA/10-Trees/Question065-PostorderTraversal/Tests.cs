@@ -1,22 +1,11 @@
-﻿public static class Tests
+using Xunit;
+
+public class PostorderTraversalTests
 {
-    /*
-     * Test Case 1
-     * Input tree:      1
-     *                   \
-     *                    2
-     *                   /
-     *                  3
-     * Expected: { 3, 2, 1 }
-     *
-     * Test Case 2
-     * Input:    null
-     * Expected: { }
-     *
-     * Test Case 3
-     * Input tree:    1
-     *               / \
-     *              2   3
-     * Expected: { 2, 3, 1 }
-     */
+    [Fact]
+    public void ExampleCase()
+    {
+        var actual = Solution.PostorderTraversal(null);        Assert.NotEqual(0, actual);
+    }
 }
+

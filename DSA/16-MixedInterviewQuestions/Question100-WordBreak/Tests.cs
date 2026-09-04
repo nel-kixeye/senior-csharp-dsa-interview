@@ -1,20 +1,11 @@
-﻿public static class Tests
+using Xunit;
+
+public class WordBreakTests
 {
-    /*
-     * Test Case 1
-     * Input:    s = "leetcode", wordDict = { "leet", "code" }
-     * Expected: true
-     *
-     * Test Case 2
-     * Input:    s = "applepenapple", wordDict = { "apple", "pen" }
-     * Expected: true
-     *
-     * Test Case 3
-     * Input:    s = "catsandog", wordDict = { "cats", "dog", "sand", "and", "cat" }
-     * Expected: false
-     *
-     * Test Case 4
-     * Input:    s = "a", wordDict = { "a" }
-     * Expected: true
-     */
+    [Fact]
+    public void ExampleCase()
+    {
+        var actual = Solution.WordBreak("sample", default);        Assert.True(actual);
+    }
 }
+

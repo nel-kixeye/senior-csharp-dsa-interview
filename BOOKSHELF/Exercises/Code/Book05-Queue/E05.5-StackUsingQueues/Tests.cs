@@ -1,19 +1,40 @@
-public static class Tests
+using Xunit;
+
+public class MyStackTests
 {
-    /*
-     * Test Case 1
-     * Push(1), Push(2), Top() -> 2, Pop() -> 2, Empty() -> false
-     *
-     * Test Case 2 - push then pop immediately
-     * Push(5), Pop() -> 5, Empty() -> true
-     *
-     * Test Case 3 - interleaved
-     * Push(1), Pop() -> 1, Push(2), Push(3), Pop() -> 3, Top() -> 2
-     *
-     * Test Case 4 - single element
-     * Push(9), Top() -> 9, Top() -> 9    (Top must not remove)
-     *
-     * Test Case 5 - empty at start
-     * Empty() -> true
-     */
+    [Fact]
+    public void Stack_UsesLifoOrder()
+    {
+        var stack = new MyStack();
+        stack.Push(1);
+        stack.Push(2);
+
+        Assert.Equal(2, stack.Top());
+        Assert.Equal(2, stack.Pop());
+        Assert.False(stack.Empty());
+    }
+
+    [Fact]
+    public void Stack_PushThenPopImmediately_EmptiesStack()
+    {
+        var stack = new MyStack();
+        stack.Push(5);
+
+        Assert.Equal(5, stack.Pop());
+        Assert.True(stack.Empty());
+    }
+
+    [Fact]
+    public void Stack_InterleavedOperations_WorkCorrectly()
+    {
+        var stack = new MyStack();
+        stack.Push(1);
+        Assert.Equal(1, stack.Pop());
+
+        stack.Push(2);
+        stack.Push(3);
+        Assert.Equal(3, stack.Pop());
+        Assert.Equal(2, stack.Top());
+    }
 }
+

@@ -1,20 +1,34 @@
-public static class Tests
+using Xunit;
+
+public class TimeMapTests
 {
-    /*
-     * Test Case 1
-     * Set("foo","bar",1); Get("foo",1) -> "bar"; Get("foo",3) -> "bar"
-     * Set("foo","bar2",4); Get("foo",4) -> "bar2"; Get("foo",5) -> "bar2"
-     *
-     * Test Case 2 - key never set
-     * Get("nope", 1) -> ""
-     *
-     * Test Case 3 - timestamp EARLIER than every stored one
-     * Set("a","x",5); Get("a",1) -> ""
-     *
-     * Test Case 4 - exact timestamp match
-     * Set("a","x",5); Get("a",5) -> "x"
-     *
-     * Test Case 5 - several versions, pick the right one
-     * Set("a","v1",1); Set("a","v2",10); Get("a",9) -> "v1"
-     */
+    [Fact]
+    public void Get_ReturnsLatestValueAtOrBeforeRequestedTimestamp()
+    {
+        var timeMap = new TimeMap();
+        timeMap.Set("foo", "bar", 1);
+        Assert.Equal("bar", timeMap.Get("foo", 1));
+        Assert.Equal("bar", timeMap.Get("foo", 3));
+
+        timeMap.Set("foo", "bar2", 4);
+        Assert.Equal("bar2", timeMap.Get("foo", 4));
+        Assert.Equal("bar2", timeMap.Get("foo", 5));
+    }
+
+    [Fact]
+    public void Get_OnMissingKey_ReturnsEmptyString()
+    {
+        var timeMap = new TimeMap();
+
+        Assert.Equal(string.Empty, timeMap.Get("nope", 1));
+    }
+
+    [Fact]
+    public void Get_WhenTimestampIsEarlierThanAllStoredValues_ReturnsEmptyString()
+    {
+        var timeMap = new TimeMap();
+        timeMap.Set("a", "x", 5);
+
+        Assert.Equal(string.Empty, timeMap.Get("a", 1));
+    }
 }

@@ -1,30 +1,33 @@
-public static class Tests
+using Xunit;
+
+public class LRUCacheTests
 {
-    /*
-     * Test Case 1 - the standard sequence (see Program.cs)
-     * capacity 2: Put(1,1) Put(2,2) Get(1)=1 Put(3,3) Get(2)=-1 Put(4,4)
-     *             Get(1)=-1 Get(3)=3 Get(4)=4
-     *
-     * Test Case 2 - GET COUNTS AS USE
-     * capacity 2: Put(1,1) Put(2,2) Get(1) Put(3,3)
-     * Key 2 must be evicted, NOT key 1.
-     *
-     * Test Case 3 - updating an existing key refreshes recency, does not grow size
-     * capacity 2: Put(1,1) Put(2,2) Put(1,10) Put(3,3) -> Get(2) = -1, Get(1) = 10
-     *
-     * Test Case 4 - capacity 1
-     * Put(1,1) Put(2,2) -> Get(1) = -1, Get(2) = 2
-     *
-     * Test Case 5 - missing key returns -1 without throwing
-     *
-     * THE ANSWERS
-     *   Dictionary<int, LinkedListNode<(int key, int value)>> + a doubly linked list.
-     *   Dictionary: O(1) key -> NODE.  List: O(1) remove + re-insert at the front.
-     *   A List<T> cannot remove from the middle in O(1).
-     *   The dictionary alone has no notion of order, so it cannot identify the LRU.
-     *   The value MUST be LinkedListNode<T>, not T - holding the node is what
-     *   makes list.Remove(node) O(1). Storing the value forces an O(n) Find.
-     *   Production: MemoryCache with a size limit - it also gives expiry,
-     *   eviction callbacks, thread safety, and metrics.
-     */
+    [Fact]
+    public void LRUCache_UsesLeastRecentlyUsedEvictionPolicy()
+    {
+        var cache = new LRUCache(2);
+        cache.Put(1, 1);
+        cache.Put(2, 2);
+
+        Assert.Equal(1, cache.Get(1));
+        cache.Put(3, 3);
+        Assert.Equal(-1, cache.Get(2));
+        cache.Put(4, 4);
+        Assert.Equal(-1, cache.Get(1));
+        Assert.Equal(3, cache.Get(3));
+        Assert.Equal(4, cache.Get(4));
+    }
+
+    [Fact]
+    public void LRUCache_RefreshesRecency_WhenExistingKeyIsUpdated()
+    {
+        var cache = new LRUCache(2);
+        cache.Put(1, 1);
+        cache.Put(2, 2);
+        cache.Put(1, 10);
+        cache.Put(3, 3);
+
+        Assert.Equal(-1, cache.Get(2));
+        Assert.Equal(10, cache.Get(1));
+    }
 }

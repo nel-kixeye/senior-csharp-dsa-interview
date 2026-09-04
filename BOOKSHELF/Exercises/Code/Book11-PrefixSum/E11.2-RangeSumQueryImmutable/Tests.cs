@@ -1,12 +1,16 @@
-public static class Tests
+using Xunit;
+
+public class NumArrayTests
 {
-    /*
-     * Array: { -2, 0, 3, -5, 2, -1 }
-     *
-     * Test Case 1  SumRange(0, 2) -> 1
-     * Test Case 2  SumRange(2, 5) -> -1
-     * Test Case 3  SumRange(0, 5) -> -3     (full range)
-     * Test Case 4  SumRange(3, 3) -> -5     (i == j, single element)
-     * Test Case 5  SumRange(0, 0) -> -2     (i == 0, the case the leading zero fixes)
-     */
+    [Fact]
+    public void SumRange_ReturnsInclusiveRangeSum()
+    {
+        var array = new NumArray(new[] { -2, 0, 3, -5, 2, -1 });
+
+        Assert.Equal(1, array.SumRange(0, 2));
+        Assert.Equal(-1, array.SumRange(2, 5));
+        Assert.Equal(-3, array.SumRange(0, 5));
+        Assert.Equal(-5, array.SumRange(3, 3));
+        Assert.Equal(-2, array.SumRange(0, 0));
+    }
 }

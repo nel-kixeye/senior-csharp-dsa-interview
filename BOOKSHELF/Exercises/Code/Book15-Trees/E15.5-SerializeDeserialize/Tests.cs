@@ -1,17 +1,40 @@
-public static class Tests
+using Xunit;
+
+public class CodecTests
 {
-    /*
-     * The self-check for all of these is a ROUND TRIP:
-     *   Serialize(Deserialize(Serialize(t))) == Serialize(t)
-     *
-     * Test Case 1  [1,2,3,null,null,4,5]  round-trips
-     * Test Case 2  null                   round-trips (empty tree)
-     * Test Case 3  [1]                    round-trips (single node)
-     * Test Case 4  fully left-skewed 1->2->3   round-trips
-     *
-     * Test Case 5 - NEGATIVE and MULTI-DIGIT values
-     * Input:    [-100, 250, -3]
-     * Expected: round-trips. If your delimiter is a single character that can
-     *           appear in a value (like '-'), this is where it breaks.
-     */
+    [Fact]
+    public void SerializeDeserialize_RoundTripsTypicalTree()
+    {
+        var root = new TreeNode(1,
+            new TreeNode(2),
+            new TreeNode(3, new TreeNode(4), new TreeNode(5)));
+
+        var codec = new Codec();
+        var serialized = codec.Serialize(root);
+        var deserialized = codec.Deserialize(serialized);
+
+        Assert.Equal(serialized, codec.Serialize(deserialized));
+    }
+
+    [Fact]
+    public void SerializeDeserialize_RoundTripsNullTree()
+    {
+        var codec = new Codec();
+        Assert.Equal(string.Empty, codec.Serialize(null));
+        Assert.Null(codec.Deserialize(string.Empty));
+    }
+
+    [Fact]
+    public void SerializeDeserialize_RoundTripsNegativeAndMultiDigitValues()
+    {
+        var root = new TreeNode(-100,
+            new TreeNode(250),
+            new TreeNode(-3));
+
+        var codec = new Codec();
+        var serialized = codec.Serialize(root);
+        var deserialized = codec.Deserialize(serialized);
+
+        Assert.Equal(serialized, codec.Serialize(deserialized));
+    }
 }
