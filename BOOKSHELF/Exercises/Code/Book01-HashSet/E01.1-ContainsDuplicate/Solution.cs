@@ -4,6 +4,14 @@ public static class Solution
     // Naive to avoid: nested loops, or List.Contains inside a loop.
     public static bool ContainsDuplicate(int[] nums)
     {
-        throw new NotImplementedException();
+        var seen = new HashSet<int>();
+        foreach(var num in nums)
+        {
+            if(!seen.Add(num))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
