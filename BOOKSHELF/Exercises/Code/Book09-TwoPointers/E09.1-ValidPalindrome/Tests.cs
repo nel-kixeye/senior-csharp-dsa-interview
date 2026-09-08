@@ -5,7 +5,7 @@ public class IsPalindromeTests
     [Fact]
     public void ExampleCase()
     {
-        var actual = Solution.IsPalindrome("sample");        Assert.True(actual);
+        var actual = Solution.IsPalindrome("sample");        Assert.False(actual);
     }
 }
 

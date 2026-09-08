@@ -7,6 +7,27 @@ public static class Solution
     // and why?
     public static void SortColors(int[] nums)
     {
-        throw new NotImplementedException();
+        var zero = 0;
+        var ones = 0;
+        var twos = nums.Length - 1;
+
+        while(ones <= twos)
+        {
+            if(nums[ones] == 0)
+            {
+                (nums[zero], nums[ones]) = (nums[ones], nums[zero]);
+                zero++;
+                ones++;
+            }
+            else if(nums[ones] == 1)
+            {
+                ones++;
+            }
+            else
+            {
+                (nums[ones], nums[twos]) = (nums[twos], nums[ones]);
+                twos--;
+            }
+        }
     }
 }
