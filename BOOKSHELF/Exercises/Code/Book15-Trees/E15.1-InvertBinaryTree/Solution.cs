@@ -17,6 +17,10 @@ public static class Solution
     // and say why - it is a good test of whether you understand traversal order.
     public static TreeNode? InvertTree(TreeNode? root)
     {
-        throw new NotImplementedException();
+        if(root == null) return root;
+        (root.left, root.right) = (root.right, root.left);
+        InvertTree(root.left);
+        InvertTree(root.right);
+        return root;
     }
 }

@@ -21,6 +21,22 @@ public static class Solution
     // sentinels.
     public static bool IsValidBST(TreeNode? root)
     {
-        throw new NotImplementedException();
+        return IsValid(root, long.MinValue, long.MaxValue);
+    }
+
+    private static bool IsValid(TreeNode? node, long lowerBound, long upperBound)
+    {
+        if (node is null)
+        {
+            return true;
+        }
+
+        if (node.val <= lowerBound || node.val >= upperBound)
+        {
+            return false;
+        }
+
+        return IsValid(node.left, lowerBound, node.val)
+            && IsValid(node.right, node.val, upperBound);
     }
 }

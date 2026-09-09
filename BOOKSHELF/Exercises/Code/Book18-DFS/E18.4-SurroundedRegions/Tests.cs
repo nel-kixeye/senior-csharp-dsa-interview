@@ -3,9 +3,23 @@ using Xunit;
 public class SolveTests
 {
     [Fact]
-    public void ExampleCase()
+    public void CapturesOnlyRegionsNotConnectedToTheBorder()
     {
-        var actual = Solution.Solve(default);        Assert.Null(Record.Exception(() => Solution.Solve(default)));
+        var board = new[] { new[] { 'X', 'X', 'X' }, new[] { 'X', 'O', 'X' }, new[] { 'X', 'X', 'X' } };
+
+        Solution.Solve(board);
+
+        Assert.Equal(new[] { new[] { 'X', 'X', 'X' }, new[] { 'X', 'X', 'X' }, new[] { 'X', 'X', 'X' } }, board);
+    }
+
+    [Fact]
+    public void BorderConnectedRegionsRemainOpen()
+    {
+        var board = new[] { new[] { 'O', 'X' }, new[] { 'X', 'O' } };
+
+        Solution.Solve(board);
+
+        Assert.Equal(new[] { new[] { 'O', 'X' }, new[] { 'X', 'O' } }, board);
     }
 }
 

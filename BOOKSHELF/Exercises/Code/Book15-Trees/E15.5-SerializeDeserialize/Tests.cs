@@ -14,6 +14,7 @@ public class CodecTests
         var deserialized = codec.Deserialize(serialized);
 
         Assert.Equal(serialized, codec.Serialize(deserialized));
+        AssertTreeEqual(root, deserialized);
     }
 
     [Fact]
@@ -36,5 +37,33 @@ public class CodecTests
         var deserialized = codec.Deserialize(serialized);
 
         Assert.Equal(serialized, codec.Serialize(deserialized));
+        AssertTreeEqual(root, deserialized);
+    }
+
+    [Fact]
+    public void SerializeDeserialize_PreservesOneSidedShape()
+    {
+        var root = new TreeNode(10,
+            null,
+            new TreeNode(-2, new TreeNode(7), null));
+
+        var codec = new Codec();
+        var deserialized = codec.Deserialize(codec.Serialize(root));
+
+        AssertTreeEqual(root, deserialized);
+    }
+
+    private static void AssertTreeEqual(TreeNode? expected, TreeNode? actual)
+    {
+        if (expected is null)
+        {
+            Assert.Null(actual);
+            return;
+        }
+
+        Assert.NotNull(actual);
+        Assert.Equal(expected.val, actual.val);
+        AssertTreeEqual(expected.left, actual.left);
+        AssertTreeEqual(expected.right, actual.right);
     }
 }

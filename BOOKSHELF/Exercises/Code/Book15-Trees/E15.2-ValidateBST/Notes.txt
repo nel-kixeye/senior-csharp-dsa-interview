@@ -12,3 +12,30 @@ Expected Time:
 
 Attempts:
 (record attempt 1, 2, 3 here — what you tried and what was wrong)
+
+What I was missing:
+
+The BST rule applies to an entire subtree, not only to a node's immediate
+children. Every node in a left subtree must be smaller than the root and every
+node in a right subtree must be larger than the root.
+
+For example, this tree is invalid:
+
+	10
+	/ \
+   5  15
+	\
+	12
+
+The 12 is larger than its parent 5, but it is still in 10's left subtree, so
+it must be smaller than 10. Comparing only each node with its parent misses
+this violation.
+
+The invariant is: when visiting a node, carry the exclusive range of values
+allowed by all its ancestors. Start with (long.MinValue, long.MaxValue).
+
+- Going left keeps the lower bound and changes the upper bound to the current value.
+- Going right changes the lower bound to the current value and keeps the upper bound.
+- Values must be strictly inside the range, so duplicates are invalid.
+
+The bounds use long because int.MinValue and int.MaxValue are valid node values.
