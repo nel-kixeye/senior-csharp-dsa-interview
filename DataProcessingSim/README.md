@@ -10,7 +10,7 @@ The sample files are intentionally small enough to inspect during an interview, 
 
 ## Tasks
 
-Implement the operations exposed by `OrderAnalyzer` in the source project. The operations are ordered from shorter warm-up work to more involved data processing.
+Run the console project first. It loads both supplied files from its data directory and gives you the dataset in memory. Then implement the operations exposed by `OrderAnalyzer` and add calls in `Program.cs` to inspect the reports you produce. The operations are ordered from shorter warm-up work to more involved data processing.
 
 ### 1. Completed order summaries
 
@@ -39,7 +39,8 @@ Return each order ID at most once, sorted ascending. Shipment events for unknown
 ## Constraints
 
 - You have approximately 60 to 90 minutes.
-- Work from the supplied files and the requirements above.
+- Start by running the application and inspecting the supplied files and the loaded objects.
+- Work from the supplied files and the requirements above; do not replace the data with hard-coded records.
 - The input collections may be empty, contain duplicates, or be larger than the sample files.
 - Do not assume the input is already sorted.
 - Do not mutate caller-owned collections or records.
@@ -51,9 +52,25 @@ Return each order ID at most once, sorted ascending. Shipment events for unknown
 
 ## Expected behavior
 
-The test project contains interviewer verification tests for the public operations. Run them after implementing each task. The tests cover ordinary examples as well as empty inputs, a single record, duplicate records, missing values, invalid values, boundary dates, ties, zero totals, and a larger generated input.
+The test project contains optional verification tests for the public operations. They are not the primary workflow. The application must load the real JSON and CSV files before you begin processing; use the tests later to verify isolated edge cases. The tests cover ordinary examples as well as empty inputs, a single record, duplicate records, missing values, invalid values, boundary dates, ties, zero totals, and a larger generated input.
 
 A correct implementation should also be safe to call with empty sequences and should not depend on the order in which records happen to arrive.
+
+## Running the simulation
+
+From the repository root:
+
+```powershell
+dotnet run --project .\DataProcessingSim\src\DataProcessingSim.csproj
+```
+
+The sample data is copied beside the application automatically. To practice with another directory containing `orders.json` and `shipment-events.csv`, pass that directory as the first argument:
+
+```powershell
+dotnet run --project .\DataProcessingSim\src\DataProcessingSim.csproj -- C:\path\to\your\data
+```
+
+The program intentionally does not print the task answers. Add your own report calls to `Program.cs` as you complete each task.
 
 ## Time management
 
