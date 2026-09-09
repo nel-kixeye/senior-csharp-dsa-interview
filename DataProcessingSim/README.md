@@ -1,81 +1,112 @@
 # Data Processing Interview Simulation
 
-## Scenario
+## Interview scenario
 
-You are joining a small commerce platform team. The platform exports order data from its order service and shipment events from its logistics provider. Your job is to produce a few business reports from those exports before the next operations review.
+You are working on an internal reporting tool for a small commerce company. The company has exported order data from its order system and shipment events from a logistics provider. You must turn the raw exports into useful operational reports during a live coding interview.
 
-`data/orders.json` contains orders and their line items. Dates are UTC ISO-8601 values. Money is represented in the currency unit used by the business. `data/shipment-events.csv` contains shipment events; an order may have several events, events may be out of chronological order, and the two exports do not necessarily contain the same order IDs.
+You receive two files in the `data` folder:
 
-The sample files are intentionally small enough to inspect during an interview, but they include cancelled and refunded orders, missing optional values, empty collections, invalid values, duplicate-looking events, and ties.
+- `orders.json` contains orders and nested order items.
+- `shipment-events.csv` contains shipment events, including events for orders that may not appear in the order export.
 
-## Tasks
+The files are deliberately small enough to inspect quickly, but contain missing values, empty collections, invalid values, repeated records, events out of order, and records that should not contribute to every report.
 
-Run the console project first. It loads both supplied files from its data directory and gives you the dataset in memory. Then implement the operations exposed by `OrderAnalyzer` and add calls in `Program.cs` to inspect the reports you produce. The operations are ordered from shorter warm-up work to more involved data processing.
+## Starting point
 
-### 1. Completed order summaries
+The only source file supplied is `Program.cs`. It locates the data directory and reads the files as raw text. Everything else is your responsibility:
 
-For a requested region, return summaries for completed orders in that region only. Each summary must contain the order ID, order date, number of valid items, and the order total after the order discount. Ignore invalid line items: a line is valid only when its quantity is positive, its unit price is not negative, and it has a product ID. A missing item collection contributes no valid items.
+- Inspect the JSON and CSV structures.
+- Decide what models you need.
+- Deserialize and parse the files.
+- Decide how malformed or missing values should be handled.
+- Implement the four tasks below.
+- Print useful results from `Program.cs` so you can inspect your work.
 
-Sort summaries by order date ascending, then order ID ascending. The order total is the sum of valid line totals, reduced by the order discount. Treat a discount below zero as zero and a discount above one as one.
+Do not hard-code answers from the sample files. Your code should operate on the loaded data.
 
-### 2. Customer spend
+## Task 1: Completed order report
 
-Return total spend per customer for completed orders. Use the same valid-line and discount rules as Task 1. Include customers whose valid total is zero, and do not create an entry for an order with a missing customer ID. The result must be deterministic when it is enumerated.
+Create a report for completed orders in a requested region.
 
-Cancelled, refunded, and partially fulfilled orders do not contribute to this report.
+For each matching order, return or print:
 
-### 3. Product sales ranking
+- Order ID
+- Order date
+- Number of valid items
+- Total value after the order discount
 
-Return up to `limit` products sold by completed orders. Combine rows for the same product ID, including rows where the product appears in more than one order. Report total quantity and discounted revenue allocated proportionally across the valid lines in each order. Use the first non-empty product name encountered for a product; if none exists, use the product ID.
+A valid item has a product ID, a positive quantity, and a non-negative unit price. Ignore invalid items. A missing item collection behaves as having no valid items. Clamp discounts to the range from zero through one.
 
-Rank by revenue descending, then quantity descending, then product ID ascending. A non-positive limit returns no results. Invalid lines and orders with no valid lines do not contribute.
+Sort the report by order date ascending, then order ID ascending. Cancelled, refunded, and other non-completed orders must not appear.
 
-### 4. Delayed orders from shipment events
+## Task 2: Customer spending report
 
-Return IDs of orders that are not delivered within the requested delivery window. Only consider orders with status `Completed` or `PartiallyFulfilled`. Match shipment events to those orders, ignore events with an invalid or missing timestamp, and use the latest valid event for an order. An order is delayed when it has no valid `Delivered` event by the end of the window after its order date. An order with a delivered event exactly on the boundary is on time.
+Calculate the total completed-order spend for each customer.
 
-Return each order ID at most once, sorted ascending. Shipment events for unknown orders must not create results. A non-positive delivery window is invalid input and should be handled consistently and safely.
+Apply the same item validity and discount rules as Task 1. Include a customer whose valid total is zero. Ignore orders whose customer ID is missing or blank. Do not include cancelled, refunded, or partially fulfilled orders.
+
+Return deterministic output, including when two customers have the same total. The report should work when there are no orders and when the input contains repeated records.
+
+## Task 3: Product sales ranking
+
+Produce a ranked report of the top `N` products sold through completed orders.
+
+For every product, calculate:
+
+- Product ID
+- A usable product name
+- Total quantity sold
+- Total discounted revenue
+
+Combine occurrences of the same product across all applicable orders. Invalid items do not contribute. When a product name is missing, use a sensible fallback. Apply each order's discount correctly when calculating revenue.
+
+Sort by revenue descending, then quantity descending, then product ID ascending. A non-positive requested limit should produce no results. Ties must be handled deterministically.
+
+This task is intended to make you consider how your data structures and number of passes affect runtime as the input grows.
+
+## Task 4: Delayed shipment report
+
+Find orders that were not delivered within a requested number of days after the order date.
+
+Only consider orders with status `Completed` or `PartiallyFulfilled`. Match shipment events to orders. Shipment events may be out of order, duplicated, incomplete, or associated with an unknown order.
+
+Ignore shipment events with a missing or invalid timestamp. A delivery exactly on the deadline is on time. An order with no valid delivery by the deadline is delayed. Return each delayed order ID once, sorted ascending.
+
+Use a clear, consistent policy for a non-positive delivery window and for duplicate order records. Do not allow unknown shipment events to create delayed-order results.
 
 ## Constraints
 
-- You have approximately 60 to 90 minutes.
-- Start by running the application and inspecting the supplied files and the loaded objects.
-- Work from the supplied files and the requirements above; do not replace the data with hard-coded records.
-- The input collections may be empty, contain duplicates, or be larger than the sample files.
-- Do not assume the input is already sorted.
-- Do not mutate caller-owned collections or records.
-- Preserve decimal arithmetic for monetary values.
-- Decide how to handle null references and other malformed input in a way that is consistent with the requirements.
-- Keep the public behavior deterministic.
-- You may choose the implementation structure and supporting private helpers.
-- The verification tests are intentionally incomplete; add your own tests while working.
+- Time limit: 60 to 90 minutes.
+- You may add types, methods, and small supporting files if you decide they are necessary, but begin with the supplied `Program.cs`.
+- You may use the .NET standard library and normal JSON/CSV parsing techniques.
+- Do not assume either file is sorted.
+- Do not mutate the raw input while processing it.
+- Preserve decimal precision for money.
+- Keep behavior deterministic and explain important assumptions in your own notes or output.
+- Prioritize working behavior and readable code over architecture.
+- There are no supplied interviewer tests. Validate your work by inspecting outputs and creating your own temporary checks if needed.
 
-## Expected behavior
+## Suggested interview workflow
 
-The test project contains optional verification tests for the public operations. They are not the primary workflow. The application must load the real JSON and CSV files before you begin processing; use the tests later to verify isolated edge cases. The tests cover ordinary examples as well as empty inputs, a single record, duplicate records, missing values, invalid values, boundary dates, ties, zero totals, and a larger generated input.
+1. Run the program and inspect both raw files.
+2. Sketch the data shape before writing processing logic.
+3. Build the smallest useful models and loading code.
+4. Complete Task 1 and inspect its output.
+5. Complete Task 2, then Task 3.
+6. Use the remaining time for Task 4, malformed data, empty input, and cleanup.
 
-A correct implementation should also be safe to call with empty sequences and should not depend on the order in which records happen to arrive.
+The goal is to practice the complete interview loop: receiving unfamiliar files, understanding their shape, building a workable representation, making reasonable assumptions, processing the data, and communicating results under time pressure.
 
 ## Running the simulation
 
 From the repository root:
 
 ```powershell
-dotnet run --project .\DataProcessingSim\src\DataProcessingSim.csproj
+dotnet run --project .\DataProcessingSim\DataProcessingSim.csproj
 ```
 
-The sample data is copied beside the application automatically. To practice with another directory containing `orders.json` and `shipment-events.csv`, pass that directory as the first argument:
+To use another folder containing `orders.json` and `shipment-events.csv`:
 
 ```powershell
-dotnet run --project .\DataProcessingSim\src\DataProcessingSim.csproj -- C:\path\to\your\data
+dotnet run --project .\DataProcessingSim\DataProcessingSim.csproj -- C:\path\to\data
 ```
-
-The program intentionally does not print the task answers. Add your own report calls to `Program.cs` as you complete each task.
-
-## Time management
-
-Aim to complete Tasks 1 and 2 first, then Task 3, and use the remaining time for Task 4, extra tests, and cleanup. A partial implementation with clear assumptions is preferable to unfinished architecture.
-
-## Notes
-
-Structure the solution however you think is appropriate. Correctness and readable, maintainable C# matter more than unnecessary architecture. You may use the standard library, but do not change the requirements or the verification tests.

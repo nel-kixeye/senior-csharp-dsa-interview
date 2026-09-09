@@ -1,9 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <IsTestProject>true</IsTestProject>
-    <RootNamespace>DataProcessingSim.Tests</RootNamespace>
-  </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\src\DataProcessingSim.csproj" />
-  </ItemGroup>
-</Project>

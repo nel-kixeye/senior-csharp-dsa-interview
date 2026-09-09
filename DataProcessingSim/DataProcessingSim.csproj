@@ -4,6 +4,6 @@
     <RootNamespace>DataProcessingSim</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="..\data\**\*" Link="data\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="data\**\*" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>
