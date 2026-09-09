@@ -1,0 +1,123 @@
+[
+  {
+    "orderId": "O-1001",
+    "orderDate": "2026-08-01T09:15:00Z",
+    "customerId": "C-101",
+    "customerName": "Ava Patel",
+    "region": "North",
+    "status": "Completed",
+    "discount": 0.10,
+    "items": [
+      { "productId": "P-01", "productName": "Mechanical Keyboard", "quantity": 1, "unitPrice": 89.99 },
+      { "productId": "P-02", "productName": "USB-C Dock", "quantity": 1, "unitPrice": 129.50 }
+    ]
+  },
+  {
+    "orderId": "O-1002",
+    "orderDate": "2026-08-02T14:20:00Z",
+    "customerId": "C-102",
+    "customerName": "Noah Williams",
+    "region": "West",
+    "status": "Completed",
+    "discount": 0.00,
+    "items": [
+      { "productId": "P-03", "productName": "Noise-Cancelling Headset", "quantity": 2, "unitPrice": 74.99 }
+    ]
+  },
+  {
+    "orderId": "O-1003",
+    "orderDate": "2026-08-03T11:00:00Z",
+    "customerId": "C-101",
+    "customerName": "Ava Patel",
+    "region": "North",
+    "status": "Cancelled",
+    "discount": 0.15,
+    "items": [
+      { "productId": "P-04", "productName": "4K Monitor", "quantity": 1, "unitPrice": 299.00 }
+    ]
+  },
+  {
+    "orderId": "O-1004",
+    "orderDate": "2026-08-03T11:00:00Z",
+    "customerId": "C-103",
+    "customerName": null,
+    "region": "South",
+    "status": "Completed",
+    "discount": 0.05,
+    "items": [
+      { "productId": "P-01", "productName": "Mechanical Keyboard", "quantity": 2, "unitPrice": 89.99 },
+      { "productId": "P-05", "productName": "Desk Lamp", "quantity": 1, "unitPrice": 34.95 }
+    ]
+  },
+  {
+    "orderId": "O-1005",
+    "orderDate": "2026-08-04T16:45:00Z",
+    "customerId": "C-104",
+    "customerName": "Mia Chen",
+    "region": "East",
+    "status": "PartiallyFulfilled",
+    "discount": 0.20,
+    "items": [
+      { "productId": "P-06", "productName": "Webcam", "quantity": 1, "unitPrice": 59.99 },
+      { "productId": "P-07", "productName": "Desk Mat", "quantity": 3, "unitPrice": 14.00 }
+    ]
+  },
+  {
+    "orderId": "O-1006",
+    "orderDate": "2026-08-05T08:30:00Z",
+    "customerId": "C-105",
+    "customerName": "Lucas Garcia",
+    "region": "West",
+    "status": "Completed",
+    "discount": 1.00,
+    "items": []
+  },
+  {
+    "orderId": "O-1007",
+    "orderDate": "2026-08-06T12:10:00Z",
+    "customerId": "C-106",
+    "customerName": "Ella Brown",
+    "region": "North",
+    "status": "Completed",
+    "discount": 0.00,
+    "items": [
+      { "productId": "P-08", "productName": "Laptop Stand", "quantity": 0, "unitPrice": 42.00 },
+      { "productId": "P-09", "productName": "HDMI Cable", "quantity": 2, "unitPrice": -8.00 }
+    ]
+  },
+  {
+    "orderId": "O-1008",
+    "orderDate": "2026-08-07T10:05:00Z",
+    "customerId": "C-102",
+    "customerName": "Noah Williams",
+    "region": "West",
+    "status": "Completed",
+    "discount": 0.10,
+    "items": [
+      { "productId": "P-03", "productName": "Noise-Cancelling Headset", "quantity": 1, "unitPrice": 74.99 },
+      { "productId": "P-10", "productName": null, "quantity": 1, "unitPrice": 19.99 }
+    ]
+  },
+  {
+    "orderId": "O-1009",
+    "orderDate": "2026-08-08T09:40:00Z",
+    "customerId": "C-107",
+    "customerName": "Oliver Smith",
+    "region": "East",
+    "status": "Refunded",
+    "discount": 0.00,
+    "items": null
+  },
+  {
+    "orderId": "O-1010",
+    "orderDate": "2026-08-08T09:40:00Z",
+    "customerId": "C-108",
+    "customerName": "Sophia Jones",
+    "region": "East",
+    "status": "Completed",
+    "discount": 0.25,
+    "items": [
+      { "productId": "P-05", "productName": "Desk Lamp", "quantity": 4, "unitPrice": 34.95 }
+    ]
+  }
+]
