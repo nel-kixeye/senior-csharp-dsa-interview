@@ -7,6 +7,14 @@ public static class Solution
     // precision and time.
     public static double FindMaxAverage(int[] nums, int k)
     {
-        throw new NotImplementedException();
+        var sum = 0.0;
+        var best = double.MinValue;
+        for(var i = 0; i < nums.Length; i++)
+        {
+            sum += nums[i];
+            if(i >= k) sum -= nums[i - k];
+            if(i >= k - 1) best = Math.Max(best, sum / k);
+        }
+        return best;
     }
 }
