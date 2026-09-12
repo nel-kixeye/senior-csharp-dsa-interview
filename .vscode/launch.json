@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "dotnet",
+            "request": "launch",
+            "name": "DataProcessingSim",
+            "projectPath": "${workspaceFolder}/DataProcessingSim/src/DataProcessingSim.csproj"
+        },
+        {
+            "type": "dotnet",
+            "request": "launch",
+            "name": "DataProcessingSim Tests",
+            "projectPath": "${workspaceFolder}/DataProcessingSim/tests/DataProcessingSim.Tests.csproj"
+        }
+    ]
+}

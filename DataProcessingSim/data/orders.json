@@ -23,6 +23,18 @@
     "items": [
       { "productId": "P-03", "productName": "Noise-Cancelling Headset", "quantity": 2, "unitPrice": 74.99 }
     ]
+  },  
+  {
+    "orderId": "O-1002",
+    "orderDate": "2026-08-02T14:20:00Z",
+    "customerId": "C-102",
+    "customerName": "Noah Williams",
+    "region": "West",
+    "status": "Completed",
+    "discount": 0.00,
+    "items": [
+      { "productId": "P-03", "productName": "Noise-Cancelling Headset", "quantity": 2, "unitPrice": 74.99 }
+    ]
   },
   {
     "orderId": "O-1003",

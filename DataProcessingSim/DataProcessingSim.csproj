@@ -1,9 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>DataProcessingSim</RootNamespace>
-  </PropertyGroup>
-  <ItemGroup>
-    <Content Include="data\**\*" CopyToOutputDirectory="PreserveNewest" />
-  </ItemGroup>
-</Project>
