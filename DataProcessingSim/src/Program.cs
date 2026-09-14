@@ -5,12 +5,8 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        var jsonSerializerOption = new JsonSerializerOptions
-        {
-            PropertyNameCaseInsensitive = true
-        };
-        var file = File.ReadAllText(@".\data\orders.json");
-        var data = JsonSerializer.Deserialize<List<Orders>>(file, jsonSerializerOption);
+        var data = GetOrdersJson();
+        var csv = GetShipmentCSV();
         if(data is not {}) return;
         var filteredData = CompletedData(data);
         var completedReports = CompletedOrderReport(filteredData, "west");
@@ -19,6 +15,41 @@ internal class Program
         Console.WriteLine("CustomerSpendingReport");
         var productSalesRanking = ProductSalesRanking(data, 3);
         Console.WriteLine("ProductSalesRanking");
+        var deplayedShipmentReport = DelayedShipmentReport(csv,data,2);
+        Console.WriteLine("DelayedShipmentReport");
+    }
+
+    private static List<Shipment> GetShipmentCSV()
+    {
+        var file = File.ReadAllLines(@".\data\shipment-events.csv");
+        var details = file.Skip(0);
+        var shipment = new List<Shipment>();
+        foreach(var line in details)
+        {
+            var parts = line.Split(',');
+            if(!DateTime.TryParse(parts[3], out var eventAt))
+                continue;
+
+            shipment.Add(new Shipment
+            {
+                Order_Id = parts[0],
+                Tracking_Number = parts[1],
+                Event_Type = parts[2],
+                Event_At = eventAt,
+                Carrier = parts[4]
+            });
+        }
+        return shipment;
+    }
+
+    private static List<Orders>? GetOrdersJson()
+    {
+        var jsonSerializerOption = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        };
+        var file = File.ReadAllText(@".\data\orders.json");
+        return JsonSerializer.Deserialize<List<Orders>>(file, jsonSerializerOption);
     }
 
     private static List<Orders> CompletedData(List<Orders> data)
@@ -112,5 +143,29 @@ internal class Program
         .Take(limit)
     ];
 
+    }
+
+    private static List<string> DelayedShipmentReport(List<Shipment> csv, List<Orders> data, int days)
+    {
+        return csv.Join(data, 
+        shipment => shipment.Order_Id,
+        order => order.OrderId,
+        (shipment, order) => new
+        {
+            Shipments = shipment,
+            Order = order
+        })
+        .Where(x => x.Order.Status.Equals("Completed") || x.Order.Status.Equals("PartiallyFulfilled"))
+        .GroupBy(x => x.Order.OrderId)
+        .Select(x => new
+        {
+            OrderId = x.Key,
+            LatestShipment = x.OrderByDescending(z => z.Shipments.Event_At).First()
+        })
+        .Where(z => z.LatestShipment.Order.OrderDate.AddDays(days) < z.LatestShipment.Shipments.Event_At ||
+            z.LatestShipment.Shipments.Event_Type != "Delivered")
+        .OrderBy(y => y.OrderId)
+        .Select(shipment =>shipment.OrderId)
+        .ToList();
     }
 }

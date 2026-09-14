@@ -43,3 +43,12 @@ public class ProductSalesRanking
     public double TotalDiscountedRevenue {get;set;}
 
 }
+
+public class Shipment
+{
+    public string Order_Id { get; set; } = string.Empty;
+    public string Tracking_Number { get; set; } = string.Empty;
+    public string Event_Type {get; set;} = string.Empty;
+    public DateTime Event_At {get; set;}
+    public string Carrier {get;set;} = string.Empty;
+}
