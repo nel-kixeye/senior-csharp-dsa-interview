@@ -22,7 +22,7 @@ internal class Program
     private static List<Shipment> GetShipmentCSV()
     {
         var file = File.ReadAllLines(@".\data\shipment-events.csv");
-        var details = file.Skip(0);
+        var details = file.Skip(1);
         var shipment = new List<Shipment>();
         foreach(var line in details)
         {
